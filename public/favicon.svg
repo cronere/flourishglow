@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background: sage dark with soft rounded corners -->
+  <rect width="32" height="32" rx="8" fill="#3D5440"/>
+
+  <!-- Subtle inner glow -->
+  <rect width="32" height="32" rx="8" fill="url(#glow)" opacity="0.3"/>
+
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#8AAD8C"/>
+      <stop offset="100%" stop-color="#3D5440"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Stylized leaf mark — bold enough for 16px -->
+  <!-- Left leaf arc -->
+  <path d="M16 7 C12 9 9 13 9.5 18 C10 21.5 12.5 24 16 25" 
+        fill="none" stroke="#F9F5EE" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Right leaf arc -->
+  <path d="M16 7 C20 9 23 13 22.5 18 C22 21.5 19.5 24 16 25" 
+        fill="none" stroke="#D4A5A0" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Center stem -->
+  <line x1="16" y1="7" x2="16" y2="25" 
+        stroke="#F9F5EE" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Tiny cross vein at midpoint -->
+  <line x1="12" y1="16" x2="20" y2="16" 
+        stroke="#F9F5EE" stroke-width="0.8" stroke-linecap="round" opacity="0.35"/>
+</svg>
