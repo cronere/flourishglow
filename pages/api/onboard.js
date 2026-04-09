@@ -12,6 +12,12 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Remap city_state to location for Supabase
+    if (payload.city_state) {
+      payload.location = payload.city_state
+      delete payload.city_state
+    }
+
     // 1. Forward full onboarding payload to Make.com
     //    Make will: create Supabase record, send welcome email, trigger first pack generation
     const makeRes = await fetch(process.env.MAKE_ONBOARD_WEBHOOK, {
