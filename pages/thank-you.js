@@ -25,6 +25,7 @@ export default function ThankYou() {
             <div className={styles.step}><span className={styles.stepNum}>4</span><span>Three days before your next monthly pack, we&apos;ll send a quick 3-question update form.</span></div>
           </div>
           <p className={styles.contact}>Questions? Email us at <a href="mailto:hello@flourishglow.com">hello@flourishglow.com</a> — we&apos;re here.</p>
+          <p className={styles.contact} style={{marginTop:'12px'}}>Need to update your billing or manage your subscription? <a href="https://pay.flourishglow.com/p/login/7sY4gzdRs96WdMQ29haVa00" target="_blank" rel="noreferrer">Manage your account →</a></p>
         </div>
       </div>
       <Footer variant="simple" />
