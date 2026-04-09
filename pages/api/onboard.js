@@ -3,11 +3,12 @@ export default async function handler(req, res) {
 
   const payload = req.body
 
-  const required = ['first_name', 'last_name', 'email', 'business_name', 'location', 'practice_type', 'plan', 'brand_voice']
-  for (const field of required) {
-    if (!payload[field]) {
-      return res.status(400).json({ error: `Missing required field: ${field}` })
-    }
+  // Log what we received for debugging
+  console.log('Onboarding payload received:', JSON.stringify(payload))
+
+  // Basic check — just need email and plan to proceed
+  if (!payload.email || !payload.plan) {
+    return res.status(400).json({ error: 'Missing email or plan' })
   }
 
   try {
