@@ -171,7 +171,7 @@ export default function Onboarding() {
                 <div className="form-group"><label className="form-label">Phone <span className="optional">optional</span></label><input className="form-input" type="tel" name="phone" placeholder="(602) 555-0192" /></div>
               </div>
               <div className="form-row">
-                <div className="form-group"><label className="form-label">City &amp; State</label><input className="form-input" type="text" name="location" placeholder="Phoenix, AZ" required /></div>
+                <div className="form-group"><label className="form-label">City &amp; State</label><input className="form-input" type="text" name="city_state" placeholder="Phoenix, AZ" required /></div>
                 <div className="form-group"><label className="form-label">Website <span className="optional">optional</span></label><input className="form-input" type="url" name="website" placeholder="https://glowstudio.com" /></div>
               </div>
               <div className="form-row">
