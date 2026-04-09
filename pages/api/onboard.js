@@ -26,10 +26,9 @@ export default async function handler(req, res) {
     if (!makeRes.ok) throw new Error('Make webhook failed')
 
     // 2. Return Stripe checkout URL for client-side redirect
-    //    Use plan to determine which Stripe price ID
     const stripeUrl = payload.plan === 'growth'
-      ? process.env.STRIPE_GROWTH_CHECKOUT_URL
-      : process.env.STRIPE_CORE_CHECKOUT_URL
+      ? 'https://buy.stripe.com/5kQ14n9Bc3MC38c8xFaVa01'
+      : 'https://buy.stripe.com/7sY4gzdRs96WdMQ29haVa00'
 
     return res.status(200).json({ success: true, stripeUrl })
   } catch (err) {
