@@ -68,8 +68,8 @@ export default function Onboarding() {
 
     // Redirect to Stripe based on plan
     const stripeUrl = payload.plan === 'growth'
-      ? 'https://buy.stripe.com/5kQ14n9Bc3MC38c8xFaVa01'
-      : 'https://buy.stripe.com/7sY4gzdRs96WdMQ29haVa00'
+      ? 'https://pay.flourishglow.com/b/5kQ14n9Bc3MC38c8xFaVa01'
+      : 'https://pay.flourishglow.com/b/7sY4gzdRs96WdMQ29haVa00'
 
     window.location.href = stripeUrl
     setLoading(false)
