@@ -12,15 +12,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Remap city_state to location for Supabase
+    // Clean up city_state field
     if (payload.city_state) {
-      payload.location = payload.city_state
       delete payload.city_state
     }
 
-    // 1. Forward full onboarding payload to Make.com
-    //    Make will: create Supabase record, send welcome email, trigger first pack generation
-    const makeRes = await fetch(process.env.MAKE_ONBOARD_WEBHOOK, {
+    // 1. Save to pending_clients via Make webhook
+    //    Make inserts into pending_clients table only — no welcome email yet
+    //    Welcome email + content generation fires AFTER Stripe payment confirmed
+    const makeRes = await fetch(process.env.MAKE_PENDING_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,9 +30,11 @@ export default async function handler(req, res) {
       })
     })
 
-    if (!makeRes.ok) throw new Error('Make webhook failed')
+    if (!makeRes.ok) {
+      console.error('Make pending webhook failed — proceeding to Stripe anyway')
+    }
 
-    // 2. Return Stripe checkout URL for client-side redirect
+    // 2. Redirect to Stripe based on plan
     const stripeUrl = payload.plan === 'growth'
       ? 'https://pay.flourishglow.com/b/5kQ14n9Bc3MC38c8xFaVa01'
       : 'https://pay.flourishglow.com/b/7sY4gzdRs96WdMQ29haVa00'
@@ -40,6 +42,11 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true, stripeUrl })
   } catch (err) {
     console.error('Onboarding error:', err)
-    return res.status(500).json({ error: 'Something went wrong. Please try again or email hello@flourishglow.com' })
+    // Still redirect to Stripe even if pending save fails
+    // Better to have a paid client with missing data than lose the sale
+    const stripeUrl = payload.plan === 'growth'
+      ? 'https://pay.flourishglow.com/b/5kQ14n9Bc3MC38c8xFaVa01'
+      : 'https://pay.flourishglow.com/b/7sY4gzdRs96WdMQ29haVa00'
+    return res.status(200).json({ success: true, stripeUrl })
   }
 }
