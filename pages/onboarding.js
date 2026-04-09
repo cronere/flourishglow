@@ -64,9 +64,14 @@ export default function Onboarding() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
-      // Redirect to Stripe after successful POST
-      // window.location.href = process.env.NEXT_PUBLIC_STRIPE_CHECKOUT_URL
     } catch (_) {}
+
+    // Redirect to Stripe based on plan
+    const stripeUrl = payload.plan === 'growth'
+      ? 'https://buy.stripe.com/5kQ14n9Bc3MC38c8xFaVa01'
+      : 'https://buy.stripe.com/7sY4gzdRs96WdMQ29haVa00'
+
+    window.location.href = stripeUrl
     setLoading(false)
   }
 
