@@ -17,8 +17,14 @@ export default async function handler(req, res) {
   console.log('Generating PDF for:', business_name, pack_month)
 
   try {
+    // Parse fields if they come through as strings from Make
+    const parsedCaptions = typeof social_captions === 'string' ? JSON.parse(social_captions) : social_captions
+    const parsedReactivation = typeof reactivation_sequence === 'string' ? JSON.parse(reactivation_sequence) : reactivation_sequence
+    const parsedPromoEmail = typeof promo_email === 'string' ? JSON.parse(promo_email) : promo_email
+    const parsedGbpPosts = typeof gbp_posts === 'string' ? JSON.parse(gbp_posts) : gbp_posts
+
     // Build social captions HTML
-    const captionsHtml = social_captions.map(c => `
+    const captionsHtml = parsedCaptions.map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -35,7 +41,7 @@ export default async function handler(req, res) {
       </div>
     `).join('')
 
-    const captions1to6 = social_captions.slice(0, 6).map(c => `
+    const captions1to6 = parsedCaptions.slice(0, 6).map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -52,7 +58,7 @@ export default async function handler(req, res) {
       </div>
     `).join('')
 
-    const captions7to12 = social_captions.slice(6, 12).map(c => `
+    const captions7to12 = parsedCaptions.slice(6, 12).map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -70,7 +76,7 @@ export default async function handler(req, res) {
     `).join('')
 
     // Build reactivation emails HTML
-    const reactivationHtml = reactivation_sequence.map(e => `
+    const reactivationHtml = parsedReactivation.map(e => `
       <div class="email-card">
         <div class="email-card-header">
           <span class="email-num">Email ${e.email_number} of 3</span>
@@ -91,7 +97,7 @@ export default async function handler(req, res) {
       return map[type] || 'offer'
     }
 
-    const gbpHtml = gbp_posts.map(p => `
+    const gbpHtml = parsedGbpPosts.map(p => `
       <div class="gbp-card">
         <div class="gbp-card-header">
           <span class="gbp-week">Week ${p.week}</span>
@@ -357,9 +363,9 @@ export default async function handler(req, res) {
       </div>
       <div class="email-card-body">
         <div class="email-subject-label">Subject Line</div>
-        <div class="email-subject">${promo_email.subject}</div>
-        <div class="email-preview">Preview text: ${promo_email.preview_text}</div>
-        <div class="email-body">${promo_email.body.replace(/\n/g, '<br/>')}</div>
+        <div class="email-subject">${parsedPromoEmail.subject}</div>
+        <div class="email-preview">Preview text: ${parsedPromoEmail.preview_text}</div>
+        <div class="email-body">${parsedPromoEmail.body.replace(/\n/g, '<br/>')}</div>
       </div>
     </div>
     <div class="section-eyebrow">Section 04</div>
