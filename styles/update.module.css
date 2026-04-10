@@ -84,7 +84,7 @@
   font-size: 15px;
   font-weight: 300;
   line-height: 1.7;
-  color: var(--warm-gray);
+  color: #5a5348;
   max-width: 500px;
   margin: 0 auto;
 }
@@ -129,7 +129,7 @@
 .questionHint {
   font-size: 13px;
   font-weight: 300;
-  color: var(--warm-gray);
+  color: #5a5348;
   line-height: 1.6;
   margin-bottom: 16px;
 }
@@ -153,7 +153,7 @@
   box-shadow: 0 0 0 3px rgba(92,122,94,0.1);
   background: white;
 }
-.textarea::placeholder { color: rgba(122,114,105,0.45); }
+.textarea::placeholder { color: rgba(90,83,72,0.55); }
 
 /* ACTIONS */
 .actions {
