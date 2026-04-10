@@ -3,28 +3,53 @@ export default async function handler(req, res) {
 
   const {
     pack_id,
+    client_id,
     client_email,
     client_first_name,
     business_name,
-    pack_month,
-    strategy_note,
-    social_captions,
-    reactivation_sequence,
-    promo_email,
-    gbp_posts
+    pack_month
   } = req.body
 
   console.log('Generating PDF for:', business_name, pack_month)
 
   try {
-    // Parse fields if they come through as strings from Make
-    const parsedCaptions = typeof social_captions === 'string' ? JSON.parse(social_captions) : social_captions
-    const parsedReactivation = typeof reactivation_sequence === 'string' ? JSON.parse(reactivation_sequence) : reactivation_sequence
-    const parsedPromoEmail = typeof promo_email === 'string' ? JSON.parse(promo_email) : promo_email
-    const parsedGbpPosts = typeof gbp_posts === 'string' ? JSON.parse(gbp_posts) : gbp_posts
+    // Fetch pack data directly from Supabase
+    const packResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/packs?id=eq.${pack_id}&select=*`,
+      {
+        headers: {
+          'apikey': process.env.SUPABASE_SERVICE_ROLE_KEY,
+          'Authorization': `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`
+        }
+      }
+    )
+
+    const packData = await packResponse.json()
+    const pack = packData[0]
+
+    if (!pack) {
+      return res.status(404).json({ error: 'Pack not found' })
+    }
+
+    const strategy_note = pack.strategy_note
+    const social_captions = typeof pack.social_captions === 'string' ? JSON.parse(pack.social_captions) : pack.social_captions
+    const reactivation_sequence = typeof pack.reactivation_sequence === 'string' ? JSON.parse(pack.reactivation_sequence) : pack.reactivation_sequence
+    const promo_email = typeof pack.promo_email === 'string' ? JSON.parse(pack.promo_email) : pack.promo_email
+    const gbp_posts = typeof pack.gbp_posts === 'string' ? JSON.parse(pack.gbp_posts) : pack.gbp_posts
+
+    console.log('Pack fields:', {
+      has_strategy_note: !!strategy_note,
+      social_captions_type: typeof social_captions,
+      social_captions_length: Array.isArray(social_captions) ? social_captions.length : 'not array',
+      reactivation_type: typeof reactivation_sequence,
+      reactivation_length: Array.isArray(reactivation_sequence) ? reactivation_sequence.length : 'not array',
+      promo_email_type: typeof promo_email,
+      gbp_posts_type: typeof gbp_posts,
+      gbp_posts_length: Array.isArray(gbp_posts) ? gbp_posts.length : 'not array'
+    })
 
     // Build social captions HTML
-    const captionsHtml = parsedCaptions.map(c => `
+    const captionsHtml = social_captions.map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -41,7 +66,7 @@ export default async function handler(req, res) {
       </div>
     `).join('')
 
-    const captions1to6 = parsedCaptions.slice(0, 6).map(c => `
+    const captions1to6 = social_captions.slice(0, 6).map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -58,7 +83,7 @@ export default async function handler(req, res) {
       </div>
     `).join('')
 
-    const captions7to12 = parsedCaptions.slice(6, 12).map(c => `
+    const captions7to12 = social_captions.slice(6, 12).map(c => `
       <div class="caption-card">
         <div class="caption-card-header">
           <span class="caption-num">Caption ${c.caption_number} of 12</span>
@@ -76,7 +101,7 @@ export default async function handler(req, res) {
     `).join('')
 
     // Build reactivation emails HTML
-    const reactivationHtml = parsedReactivation.map(e => `
+    const reactivationHtml = reactivation_sequence.map(e => `
       <div class="email-card">
         <div class="email-card-header">
           <span class="email-num">Email ${e.email_number} of 3</span>
@@ -97,7 +122,7 @@ export default async function handler(req, res) {
       return map[type] || 'offer'
     }
 
-    const gbpHtml = parsedGbpPosts.map(p => `
+    const gbpHtml = gbp_posts.map(p => `
       <div class="gbp-card">
         <div class="gbp-card-header">
           <span class="gbp-week">Week ${p.week}</span>
@@ -363,9 +388,9 @@ export default async function handler(req, res) {
       </div>
       <div class="email-card-body">
         <div class="email-subject-label">Subject Line</div>
-        <div class="email-subject">${parsedPromoEmail.subject}</div>
-        <div class="email-preview">Preview text: ${parsedPromoEmail.preview_text}</div>
-        <div class="email-body">${parsedPromoEmail.body.replace(/\n/g, '<br/>')}</div>
+        <div class="email-subject">${promo_email.subject}</div>
+        <div class="email-preview">Preview text: ${promo_email.preview_text}</div>
+        <div class="email-body">${promo_email.body.replace(/\n/g, '<br/>')}</div>
       </div>
     </div>
     <div class="section-eyebrow">Section 04</div>
