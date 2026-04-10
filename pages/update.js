@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import styles from '../styles/update.module.css'
+import styles from '../styles/Update.module.css'
 
 export default function Update() {
   const router = useRouter()
@@ -95,7 +95,7 @@ export default function Update() {
                 <em>2 minutes, that&apos;s all.</em>
               </h1>
               <p>
-                Your {new Date().toLocaleString('default', { month: 'long' })} content pack generates in 3 days.
+                Your next content pack generates in 3 days.
                 Tell us what&apos;s happening this month so we can tailor everything to your practice.
                 Leave anything blank and we&apos;ll handle it creatively.
               </p>
