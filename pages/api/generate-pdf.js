@@ -282,16 +282,6 @@ export default async function handler(req, res) {
     <table width="100%" cellpadding="0" cellspacing="0">${captionsHtml}</table>
   </div>
 
-  <!-- PAGE FOOTER 2 -->
-  <div style="padding:16px 64px 32px;">
-    <div style="border-top:1px solid #F0E9DC; padding-top:14px;">
-      <table width="100%" cellpadding="0" cellspacing="0"><tr>
-        <td style="font-family:'Cormorant Garamond',Georgia,serif; font-size:10pt; color:#3D5440;">Flourish<span style="color:#D4A5A0;">Glow</span></td>
-        <td style="text-align:right; font-size:7pt; color:#7A7269; letter-spacing:0.06em;">${business_name} · ${pack_month}</td>
-      </tr></table>
-    </div>
-  </div>
-
   <!-- REACTIVATION EMAILS -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 02</div>
@@ -327,16 +317,6 @@ export default async function handler(req, res) {
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Google Business <em style="font-style:italic; color:#D4A5A0;">Profile Posts.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Post one per week to keep your Google listing active. No hashtags needed for GBP posts.</div>
     <table width="100%" cellpadding="0" cellspacing="0">${gbpHtml}</table>
-  </div>
-
-  <!-- PAGE FOOTER 3 -->
-  <div style="padding:16px 64px 32px;">
-    <div style="border-top:1px solid #F0E9DC; padding-top:14px;">
-      <table width="100%" cellpadding="0" cellspacing="0"><tr>
-        <td style="font-family:'Cormorant Garamond',Georgia,serif; font-size:10pt; color:#3D5440;">Flourish<span style="color:#D4A5A0;">Glow</span></td>
-        <td style="text-align:right; font-size:7pt; color:#7A7269; letter-spacing:0.06em;">${business_name} · ${pack_month}</td>
-      </tr></table>
-    </div>
   </div>
 
   <!-- CHECKLIST / BACK MATTER -->
