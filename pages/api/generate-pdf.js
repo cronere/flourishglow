@@ -12,10 +12,13 @@ export default async function handler(req, res) {
 
   console.log('Generating PDF for:', business_name, pack_month)
 
+  console.log('generate-pdf called with body:', JSON.stringify(req.body))
+
   try {
     // Fetch pack data directly from Supabase
-    const packResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/packs?id=eq.${pack_id}&select=*`,
+    const packUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/packs?id=eq.${pack_id}&select=*`
+    console.log('Fetching pack from:', packUrl)
+    const packResponse = await fetch(packUrl,
       {
         headers: {
           'apikey': process.env.SUPABASE_SERVICE_ROLE_KEY,
