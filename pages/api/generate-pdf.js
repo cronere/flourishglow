@@ -306,7 +306,7 @@ export default async function handler(req, res) {
         <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:3px;">Subject Line</div>
         <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:15pt; font-weight:500; color:#3D5440; margin-bottom:3px; line-height:1.2;">${promo_email.subject}</div>
         <div style="font-size:8.5pt; font-style:italic; color:#7A7269; margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #F0E9DC;">Preview text: ${promo_email.preview_text}</div>
-        <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C;">${promo_email.body.replace(/\n/g, '<br/>')}</div>
+        <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C;">${promo_email.body.split(' ').slice(0, 175).join(' ').replace(/\n/g, '<br/>')}${promo_email.body.split(' ').length > 175 ? '...' : ''}</div>
       </div>
     </div>
   </div>
