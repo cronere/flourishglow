@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
- 
+
   const {
     pack_id,
     client_id,
@@ -26,6 +26,14 @@ export default async function handler(req, res) {
 
     const packData = await packResponse.json()
     const pack = packData[0]
+
+    console.log('Raw pack data:', JSON.stringify({
+      has_pack: !!pack,
+      social_captions_raw: pack ? JSON.stringify(pack.social_captions).substring(0, 100) : 'no pack',
+      reactivation_raw: pack ? JSON.stringify(pack.reactivation_sequence).substring(0, 100) : 'no pack',
+      promo_email_raw: pack ? JSON.stringify(pack.promo_email).substring(0, 100) : 'no pack',
+      gbp_posts_raw: pack ? JSON.stringify(pack.gbp_posts).substring(0, 100) : 'no pack'
+    }))
 
     if (!pack) {
       return res.status(404).json({ error: 'Pack not found' })
