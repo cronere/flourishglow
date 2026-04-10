@@ -44,19 +44,26 @@ export default async function handler(req, res) {
 
     const strategy_note = pack.strategy_note
 
-    const safeparse = (val) => {
-      if (!val) return null
-      if (typeof val === 'object') return val
-      if (typeof val === 'string') {
-        try { return JSON.parse(val) } catch { return null }
-      }
-      return null
+    // The full Claude JSON response is stored in social_captions
+    // Parse it to extract all sections
+    let fullPack
+    try {
+      const rawJson = typeof pack.social_captions === 'string' 
+        ? pack.social_captions 
+        : JSON.stringify(pack.social_captions)
+      
+      // Clean up any [object Object] artifacts
+      const cleaned = rawJson.replace(/\[object Object\]/g, '{}')
+      fullPack = JSON.parse(cleaned)
+    } catch(e) {
+      console.error('Failed to parse pack JSON:', e.message)
+      return res.status(500).json({ error: 'Failed to parse pack data', details: e.message })
     }
 
-    const social_captions = safeparse(pack.social_captions)
-    const reactivation_sequence = safeparse(pack.reactivation_sequence)
-    const promo_email = safeparse(pack.promo_email)
-    const gbp_posts = safeparse(pack.gbp_posts)
+    const social_captions = fullPack.social_captions || []
+    const reactivation_sequence = fullPack.reactivation_sequence || []
+    const promo_email = fullPack.promo_email || {}
+    const gbp_posts = fullPack.gbp_posts || []
 
     console.log('Pack fields:', {
       has_strategy_note: !!strategy_note,
