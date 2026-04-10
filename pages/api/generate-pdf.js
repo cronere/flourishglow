@@ -32,20 +32,27 @@ export default async function handler(req, res) {
     }
 
     const strategy_note = pack.strategy_note
-    const social_captions = typeof pack.social_captions === 'string' ? JSON.parse(pack.social_captions) : pack.social_captions
-    const reactivation_sequence = typeof pack.reactivation_sequence === 'string' ? JSON.parse(pack.reactivation_sequence) : pack.reactivation_sequence
-    const promo_email = typeof pack.promo_email === 'string' ? JSON.parse(pack.promo_email) : pack.promo_email
-    const gbp_posts = typeof pack.gbp_posts === 'string' ? JSON.parse(pack.gbp_posts) : pack.gbp_posts
+
+    const safeparse = (val) => {
+      if (!val) return null
+      if (typeof val === 'object') return val
+      if (typeof val === 'string') {
+        try { return JSON.parse(val) } catch { return null }
+      }
+      return null
+    }
+
+    const social_captions = safeparse(pack.social_captions)
+    const reactivation_sequence = safeparse(pack.reactivation_sequence)
+    const promo_email = safeparse(pack.promo_email)
+    const gbp_posts = safeparse(pack.gbp_posts)
 
     console.log('Pack fields:', {
       has_strategy_note: !!strategy_note,
-      social_captions_type: typeof social_captions,
-      social_captions_length: Array.isArray(social_captions) ? social_captions.length : 'not array',
-      reactivation_type: typeof reactivation_sequence,
-      reactivation_length: Array.isArray(reactivation_sequence) ? reactivation_sequence.length : 'not array',
+      social_captions_length: Array.isArray(social_captions) ? social_captions.length : typeof social_captions,
+      reactivation_length: Array.isArray(reactivation_sequence) ? reactivation_sequence.length : typeof reactivation_sequence,
       promo_email_type: typeof promo_email,
-      gbp_posts_type: typeof gbp_posts,
-      gbp_posts_length: Array.isArray(gbp_posts) ? gbp_posts.length : 'not array'
+      gbp_posts_length: Array.isArray(gbp_posts) ? gbp_posts.length : typeof gbp_posts
     })
 
     // Build social captions HTML
