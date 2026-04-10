@@ -458,6 +458,7 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           pdf_url: pdfUrl,
+          pdf_base64: pdfBase64,
           generation_status: 'generated'
         })
       }
