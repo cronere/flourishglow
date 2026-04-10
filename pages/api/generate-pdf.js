@@ -175,7 +175,7 @@ export default async function handler(req, res) {
 <body>
 
   <!-- COVER BLOCK -->
-  <div style="background:#3D5440; padding:72px 72px 56px; page-break-after:always;">
+  <div style="background:#3D5440; padding:72px 72px 56px; page-break-after:always; min-height:100vh;">
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:30pt; font-weight:400; color:#fff; letter-spacing:0.02em; margin-bottom:6px;">
       Flourish<span style="color:#D4A5A0;">Glow</span>
     </div>
@@ -320,7 +320,7 @@ export default async function handler(req, res) {
   </div>
 
   <!-- CHECKLIST / BACK MATTER -->
-  <div style="background:#F0E9DC; padding:64px 72px; page-break-before:always;">
+  <div style="background:#F0E9DC; padding:64px 72px; page-break-before:always; min-height:100vh;">
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:32pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:12px;">
       Your monthly<br/><em style="font-style:italic; color:#D4A5A0;">checklist.</em>
     </div>
