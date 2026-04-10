@@ -74,63 +74,46 @@ export default async function handler(req, res) {
     })
 
     // Build social captions HTML
-    const captionsHtml = social_captions.map(c => `
-      <div class="caption-card">
-        <div class="caption-card-header">
-          <span class="caption-num">Caption ${c.caption_number} of 12</span>
-          <span class="caption-angle-badge">${c.angle}</span>
-        </div>
-        <div class="caption-body">
-          <div class="caption-image-placeholder">
-            <span class="caption-image-label">Branded Image</span>
+    const captionCard = (c) => `
+      <td class="caption-cell">
+        <div class="caption-card">
+          <div class="caption-card-header">
+            <table class="caption-header-table"><tr>
+              <td><span class="caption-num">Caption ${c.caption_number} of 12</span></td>
+              <td style="text-align:right;"><span class="caption-angle-badge">${c.angle}</span></td>
+            </tr></table>
           </div>
-          <div class="caption-text">${c.caption.replace(/\n/g, '<br/>')}</div>
-          <div class="caption-hashtags">${c.hashtags}</div>
-          <div class="caption-suggestion">📸 ${c.image_suggestion}</div>
+          <div class="caption-body">
+            <div class="caption-image-box"><span class="caption-image-label">Branded Image</span></div>
+            <div class="caption-text">${c.caption.replace(/\n/g, '<br/>')}</div>
+            <div class="caption-hashtags">${c.hashtags}</div>
+            <div class="caption-suggestion">📸 ${c.image_suggestion}</div>
+          </div>
         </div>
-      </div>
-    `).join('')
+      </td>`
 
-    const captions1to6 = social_captions.slice(0, 6).map(c => `
-      <div class="caption-card">
-        <div class="caption-card-header">
-          <span class="caption-num">Caption ${c.caption_number} of 12</span>
-          <span class="caption-angle-badge">${c.angle}</span>
-        </div>
-        <div class="caption-body">
-          <div class="caption-image-placeholder">
-            <span class="caption-image-label">Branded Image</span>
-          </div>
-          <div class="caption-text">${c.caption.replace(/\n/g, '<br/>')}</div>
-          <div class="caption-hashtags">${c.hashtags}</div>
-          <div class="caption-suggestion">📸 ${c.image_suggestion}</div>
-        </div>
-      </div>
-    `).join('')
+    const captions1to6 = social_captions.slice(0, 6).reduce((rows, c, i) => {
+      if (i % 2 === 0) rows.push('<tr>')
+      rows[rows.length - 1] += captionCard(c)
+      if (i % 2 === 1) rows[rows.length - 1] += '</tr>'
+      return rows
+    }, []).join('')
 
-    const captions7to12 = social_captions.slice(6, 12).map(c => `
-      <div class="caption-card">
-        <div class="caption-card-header">
-          <span class="caption-num">Caption ${c.caption_number} of 12</span>
-          <span class="caption-angle-badge">${c.angle}</span>
-        </div>
-        <div class="caption-body">
-          <div class="caption-image-placeholder">
-            <span class="caption-image-label">Branded Image</span>
-          </div>
-          <div class="caption-text">${c.caption.replace(/\n/g, '<br/>')}</div>
-          <div class="caption-hashtags">${c.hashtags}</div>
-          <div class="caption-suggestion">📸 ${c.image_suggestion}</div>
-        </div>
-      </div>
-    `).join('')
+    const captions7to12 = social_captions.slice(6, 12).reduce((rows, c, i) => {
+      if (i % 2 === 0) rows.push('<tr>')
+      rows[rows.length - 1] += captionCard(c)
+      if (i % 2 === 1) rows[rows.length - 1] += '</tr>'
+      return rows
+    }, []).join('')
 
     // Build reactivation emails HTML
     const reactivationHtml = reactivation_sequence.map(e => `
       <div class="email-card">
         <div class="email-card-header">
-          <span class="email-num">Email ${e.email_number} of 3</span>
-          <span class="email-send-day">Send Day ${e.send_day}</span>
+          <table class="email-header-table"><tr>
+            <td><span class="email-num">Email ${e.email_number} of 3</span></td>
+            <td style="text-align:right;"><span class="email-send-day">Send Day ${e.send_day}</span></td>
+          </tr></table>
         </div>
         <div class="email-card-body">
           <div class="email-subject-label">Subject Line</div>
@@ -147,17 +130,25 @@ export default async function handler(req, res) {
       return map[type] || 'offer'
     }
 
-    const gbpHtml = gbp_posts.map(p => `
-      <div class="gbp-card">
-        <div class="gbp-card-header">
-          <span class="gbp-week">Week ${p.week}</span>
-          <span class="gbp-type-badge gbp-type-${gbpTypeClass(p.type)}">${p.type}</span>
-        </div>
-        <div class="gbp-card-body">
-          <div class="gbp-text">${p.post.replace(/\n/g, '<br/>')}</div>
-        </div>
-      </div>
-    `).join('')
+    const gbpHtml = gbp_posts.reduce((rows, p, i) => {
+      if (i % 2 === 0) rows.push('<tr>')
+      rows[rows.length - 1] += `
+        <td class="gbp-cell">
+          <div class="gbp-card">
+            <div class="gbp-card-header">
+              <table class="gbp-header-table"><tr>
+                <td><span class="gbp-week">Week ${p.week}</span></td>
+                <td style="text-align:right;"><span class="gbp-type-badge gbp-type-${gbpTypeClass(p.type)}">${p.type}</span></td>
+              </tr></table>
+            </div>
+            <div class="gbp-card-body">
+              <div class="gbp-text">${p.post.replace(/\n/g, '<br/>')}</div>
+            </div>
+          </div>
+        </td>`
+      if (i % 2 === 1) rows[rows.length - 1] += '</tr>'
+      return rows
+    }, []).join('')
 
     // Build complete HTML
     const html = `<!DOCTYPE html>
@@ -167,104 +158,167 @@ export default async function handler(req, res) {
   <title>${business_name} — Content Pack</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
     :root {
       --cream: #F9F5EE; --cream-dark: #F0E9DC; --sage: #5C7A5E;
       --sage-dark: #3D5440; --sage-light: #8AAD8C; --blush: #D4A5A0;
       --charcoal: #2C2C2C; --warm-gray: #7A7269;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', Arial, sans-serif; background: #fff; color: var(--charcoal); font-size: 11pt; line-height: 1.5; }
-    .cover { background: var(--sage-dark); min-height: 100vh; padding: 80px 72px; display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; }
+
+    body {
+      font-family: 'DM Sans', Arial, sans-serif;
+      background: #fff;
+      color: var(--charcoal);
+      font-size: 11pt;
+      line-height: 1.5;
+      width: 794px;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      background: #3D5440;
+      width: 794px;
+      height: 1123px;
+      padding: 72px;
+      page-break-after: always;
+      position: relative;
+    }
+
+    .cover-top { margin-bottom: 240px; }
     .cover-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32pt; font-weight: 400; color: #fff; letter-spacing: 0.02em; }
-    .cover-logo span { color: var(--blush); }
+    .cover-logo span { color: #D4A5A0; }
     .cover-tagline { font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 8px; }
-    .cover-label { font-size: 9pt; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 20px; }
+    .cover-label { font-size: 9pt; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #8AAD8C; margin-bottom: 20px; }
     .cover-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 52pt; font-weight: 300; line-height: 1.05; color: #fff; margin-bottom: 24px; }
-    .cover-title em { font-style: italic; color: var(--blush); }
+    .cover-title em { font-style: italic; color: #D4A5A0; }
     .cover-business { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20pt; font-weight: 400; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
-    .cover-date { font-size: 10pt; font-weight: 300; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); }
-    .cover-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .cover-stat { text-align: center; }
-    .cover-stat-number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28pt; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 4px; }
-    .cover-stat-label { font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-    .page { padding: 56px 72px; page-break-after: always; }
-    .page:last-child { page-break-after: avoid; }
-    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--cream-dark); }
-    .page-header-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16pt; font-weight: 400; color: var(--sage-dark); }
-    .page-header-logo span { color: var(--blush); }
-    .page-header-info { text-align: right; font-size: 8pt; color: var(--warm-gray); letter-spacing: 0.06em; text-transform: uppercase; }
-    .section-eyebrow { font-size: 8pt; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); margin-bottom: 10px; }
-    .section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28pt; font-weight: 300; color: var(--sage-dark); line-height: 1.1; margin-bottom: 8px; }
-    .section-title em { font-style: italic; color: var(--blush); }
-    .section-sub { font-size: 10pt; font-weight: 300; color: var(--warm-gray); margin-bottom: 32px; line-height: 1.6; }
-    .strategy-box { background: var(--sage-dark); padding: 28px 32px; border-radius: 4px; margin-bottom: 40px; }
-    .strategy-label { font-size: 8pt; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage-light); margin-bottom: 12px; }
-    .strategy-text { font-size: 11pt; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.85); font-style: italic; }
-    .how-to-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
-    .how-to-card { padding: 20px; background: var(--cream); border-radius: 4px; border: 1px solid var(--cream-dark); }
-    .how-to-icon { font-size: 20pt; margin-bottom: 10px; }
-    .how-to-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 14pt; font-weight: 500; color: var(--sage-dark); margin-bottom: 8px; }
-    .how-to-steps { list-style: none; padding: 0; }
-    .how-to-step { font-size: 9pt; font-weight: 300; color: var(--warm-gray); line-height: 1.6; padding: 4px 0; border-bottom: 1px solid var(--cream-dark); display: flex; gap: 8px; align-items: flex-start; }
+    .cover-date { font-size: 10pt; font-weight: 300; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); margin-bottom: 48px; }
+
+    .cover-stats { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 28px; }
+    .cover-stats table { width: 100%; border-collapse: collapse; }
+    .cover-stats td { text-align: center; padding: 0 16px; }
+    .cover-stat-number { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28pt; font-weight: 300; color: #fff; line-height: 1; display: block; margin-bottom: 4px; }
+    .cover-stat-label { font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); display: block; }
+
+    /* ── PAGES ── */
+    .page { padding: 48px 64px; page-break-after: always; }
+    .page-last { padding: 48px 64px; }
+
+    .page-header { margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid #F0E9DC; }
+    .page-header table { width: 100%; border-collapse: collapse; }
+    .page-header-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16pt; font-weight: 400; color: #3D5440; }
+    .page-header-logo span { color: #D4A5A0; }
+    .page-header-info { font-size: 8pt; color: #7A7269; letter-spacing: 0.06em; text-transform: uppercase; text-align: right; }
+
+    .section-eyebrow { font-size: 8pt; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #5C7A5E; margin-bottom: 8px; }
+    .section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26pt; font-weight: 300; color: #3D5440; line-height: 1.1; margin-bottom: 6px; }
+    .section-title em { font-style: italic; color: #D4A5A0; }
+    .section-sub { font-size: 9.5pt; font-weight: 300; color: #7A7269; margin-bottom: 24px; line-height: 1.6; }
+
+    /* ── STRATEGY ── */
+    .strategy-box { background: #3D5440; padding: 24px 28px; border-radius: 4px; margin-bottom: 32px; }
+    .strategy-label { font-size: 8pt; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #8AAD8C; margin-bottom: 10px; }
+    .strategy-text { font-size: 10.5pt; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.85); font-style: italic; }
+
+    /* ── HOW TO USE — table layout ── */
+    .how-to-table { width: 100%; border-collapse: separate; border-spacing: 12px; margin: 0 -12px; margin-bottom: 24px; }
+    .how-to-card { padding: 16px; background: #F9F5EE; border-radius: 4px; border: 1px solid #F0E9DC; vertical-align: top; width: 50%; }
+    .how-to-icon { font-size: 18pt; margin-bottom: 8px; display: block; }
+    .how-to-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 13pt; font-weight: 500; color: #3D5440; margin-bottom: 8px; }
+    .how-to-step { font-size: 8.5pt; font-weight: 300; color: #7A7269; line-height: 1.6; padding: 3px 0; border-bottom: 1px solid #F0E9DC; }
     .how-to-step:last-child { border-bottom: none; }
-    .how-to-step-num { font-size: 8pt; font-weight: 500; color: var(--sage); flex-shrink: 0; margin-top: 1px; }
-    .caption-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .caption-card { border: 1px solid var(--cream-dark); border-radius: 4px; overflow: hidden; page-break-inside: avoid; }
-    .caption-card-header { background: var(--cream-dark); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; }
-    .caption-num { font-size: 8pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
-    .caption-angle-badge { font-size: 7.5pt; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage); background: rgba(92,122,94,0.12); padding: 2px 8px; border-radius: 20px; }
-    .caption-body { padding: 14px; }
-    .caption-image-placeholder { width: 100%; height: 48px; background: linear-gradient(135deg, rgba(92,122,94,0.1), rgba(212,165,160,0.12)); border-radius: 3px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(92,122,94,0.2); }
-    .caption-image-label { font-size: 7pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); opacity: 0.6; }
-    .caption-text { font-size: 9.5pt; font-weight: 300; line-height: 1.65; color: var(--charcoal); margin-bottom: 8px; }
-    .caption-hashtags { font-size: 8.5pt; color: var(--blush); line-height: 1.5; }
-    .caption-suggestion { font-size: 7.5pt; color: var(--warm-gray); font-style: italic; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--cream-dark); }
-    .email-card { border: 1px solid var(--cream-dark); border-radius: 4px; overflow: hidden; margin-bottom: 20px; page-break-inside: avoid; }
-    .email-card-header { background: var(--cream-dark); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .email-num { font-size: 8pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
-    .email-send-day { font-size: 8pt; font-weight: 500; color: var(--sage); background: rgba(92,122,94,0.1); padding: 2px 10px; border-radius: 20px; }
-    .email-card-body { padding: 20px; }
-    .email-subject-label { font-size: 7.5pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 4px; }
-    .email-subject { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16pt; font-weight: 500; color: var(--sage-dark); margin-bottom: 4px; line-height: 1.2; }
-    .email-preview { font-size: 9pt; font-style: italic; color: var(--warm-gray); margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--cream-dark); }
-    .email-body { font-size: 10pt; font-weight: 300; line-height: 1.8; color: var(--charcoal); }
-    .gbp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .gbp-card { border: 1px solid var(--cream-dark); border-radius: 4px; overflow: hidden; page-break-inside: avoid; }
-    .gbp-card-header { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--cream-dark); }
-    .gbp-week { font-size: 8pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); }
-    .gbp-type-badge { font-size: 7.5pt; font-weight: 500; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em; }
-    .gbp-type-offer { background: rgba(212,165,160,0.15); color: #b87a74; }
-    .gbp-type-educational { background: rgba(92,122,94,0.12); color: var(--sage); }
-    .gbp-type-seasonal { background: rgba(184,148,90,0.12); color: #b8945a; }
-    .gbp-type-review { background: rgba(61,84,64,0.1); color: var(--sage-dark); }
-    .gbp-card-body { padding: 14px 16px; background: var(--cream); }
-    .gbp-text { font-size: 9.5pt; font-weight: 300; line-height: 1.65; color: var(--charcoal); }
-    .back-cover { background: var(--cream-dark); min-height: 100vh; padding: 80px 72px; display: flex; flex-direction: column; justify-content: space-between; page-break-before: always; }
-    .back-cover-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36pt; font-weight: 300; color: var(--sage-dark); line-height: 1.1; margin-bottom: 16px; }
-    .back-cover-title em { font-style: italic; color: var(--blush); }
-    .back-cover-sub { font-size: 11pt; font-weight: 300; color: var(--warm-gray); line-height: 1.7; max-width: 480px; margin-bottom: 48px; }
-    .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .checklist-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 20px; background: white; border-radius: 4px; border: 1px solid rgba(92,122,94,0.15); }
-    .checklist-box { width: 18px; height: 18px; border: 1.5px solid rgba(92,122,94,0.3); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
-    .checklist-text { font-size: 10pt; font-weight: 300; color: var(--charcoal); line-height: 1.5; }
-    .checklist-text strong { font-weight: 500; color: var(--sage-dark); }
-    .back-cover-footer { border-top: 1px solid rgba(92,122,94,0.2); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
-    .back-cover-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22pt; font-weight: 400; color: var(--sage-dark); }
-    .back-cover-logo span { color: var(--blush); }
-    .back-cover-contact { text-align: right; font-size: 9pt; color: var(--warm-gray); line-height: 1.8; }
-    .back-cover-contact a { color: var(--sage); text-decoration: none; }
-    .page-footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--cream-dark); display: flex; justify-content: space-between; align-items: center; }
-    .page-footer-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 11pt; color: var(--sage-dark); }
-    .page-footer-logo span { color: var(--blush); }
-    .page-footer-info { font-size: 7.5pt; color: var(--warm-gray); letter-spacing: 0.06em; }
-    .divider-dark { height: 1px; background: rgba(92,122,94,0.2); margin: 32px 0; }
+    .how-to-num { font-size: 8pt; font-weight: 500; color: #5C7A5E; margin-right: 6px; }
+
+    /* ── CAPTIONS — table layout ── */
+    .caption-table { width: 100%; border-collapse: separate; border-spacing: 12px; margin: 0 -12px; }
+    .caption-cell { vertical-align: top; width: 50%; }
+    .caption-card { border: 1px solid #F0E9DC; border-radius: 4px; overflow: hidden; }
+    .caption-card-header { background: #F0E9DC; padding: 7px 12px; }
+    .caption-header-table { width: 100%; border-collapse: collapse; }
+    .caption-num { font-size: 7.5pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7A7269; }
+    .caption-angle-badge { font-size: 7pt; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #5C7A5E; background: rgba(92,122,94,0.12); padding: 1px 7px; border-radius: 20px; white-space: nowrap; }
+    .caption-body { padding: 12px; }
+    .caption-image-box { width: 100%; height: 40px; background: #F0E9DC; border-radius: 3px; margin-bottom: 8px; text-align: center; line-height: 40px; border: 1px dashed rgba(92,122,94,0.25); }
+    .caption-image-label { font-size: 6.5pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #5C7A5E; opacity: 0.7; }
+    .caption-text { font-size: 9pt; font-weight: 300; line-height: 1.6; color: #2C2C2C; margin-bottom: 7px; }
+    .caption-hashtags { font-size: 8pt; color: #D4A5A0; line-height: 1.5; }
+    .caption-suggestion { font-size: 7pt; color: #7A7269; font-style: italic; margin-top: 6px; padding-top: 6px; border-top: 1px solid #F0E9DC; }
+
+    /* ── EMAILS ── */
+    .email-card { border: 1px solid #F0E9DC; border-radius: 4px; overflow: hidden; margin-bottom: 16px; page-break-inside: avoid; }
+    .email-card-header { background: #F0E9DC; padding: 10px 18px; }
+    .email-header-table { width: 100%; border-collapse: collapse; }
+    .email-num { font-size: 7.5pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7A7269; }
+    .email-send-day { font-size: 7.5pt; font-weight: 500; color: #5C7A5E; background: rgba(92,122,94,0.1); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
+    .email-card-body { padding: 18px; }
+    .email-subject-label { font-size: 7pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7A7269; margin-bottom: 3px; }
+    .email-subject { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 15pt; font-weight: 500; color: #3D5440; margin-bottom: 3px; line-height: 1.2; }
+    .email-preview { font-size: 8.5pt; font-style: italic; color: #7A7269; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #F0E9DC; }
+    .email-body { font-size: 9.5pt; font-weight: 300; line-height: 1.8; color: #2C2C2C; }
+
+    /* ── GBP — table layout ── */
+    .gbp-table { width: 100%; border-collapse: separate; border-spacing: 12px; margin: 0 -12px; }
+    .gbp-cell { vertical-align: top; width: 50%; }
+    .gbp-card { border: 1px solid #F0E9DC; border-radius: 4px; overflow: hidden; }
+    .gbp-card-header { background: #F0E9DC; padding: 8px 14px; }
+    .gbp-header-table { width: 100%; border-collapse: collapse; }
+    .gbp-week { font-size: 7.5pt; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7A7269; }
+    .gbp-type-badge { font-size: 7pt; font-weight: 500; padding: 1px 7px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+    .gbp-type-offer { background: rgba(212,165,160,0.2); color: #b87a74; }
+    .gbp-type-educational { background: rgba(92,122,94,0.12); color: #5C7A5E; }
+    .gbp-type-seasonal { background: rgba(184,148,90,0.15); color: #b8945a; }
+    .gbp-type-review { background: rgba(61,84,64,0.1); color: #3D5440; }
+    .gbp-card-body { padding: 12px 14px; background: #F9F5EE; }
+    .gbp-text { font-size: 9pt; font-weight: 300; line-height: 1.65; color: #2C2C2C; }
+
+    /* ── BACK COVER ── */
+    .back-cover {
+      background: #F0E9DC;
+      width: 794px;
+      height: 1123px;
+      padding: 72px;
+      page-break-before: always;
+    }
+
+    .back-cover-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34pt; font-weight: 300; color: #3D5440; line-height: 1.1; margin-bottom: 12px; }
+    .back-cover-title em { font-style: italic; color: #D4A5A0; }
+    .back-cover-sub { font-size: 10.5pt; font-weight: 300; color: #7A7269; line-height: 1.7; max-width: 480px; margin-bottom: 36px; }
+    .checklist-item { display: table; width: 100%; padding: 14px 18px; background: white; border-radius: 4px; border: 1px solid rgba(92,122,94,0.15); margin-bottom: 10px; page-break-inside: avoid; }
+    .checklist-box-cell { display: table-cell; width: 26px; vertical-align: top; padding-top: 2px; }
+    .checklist-box { width: 16px; height: 16px; border: 1.5px solid rgba(92,122,94,0.3); border-radius: 3px; display: inline-block; }
+    .checklist-text-cell { display: table-cell; vertical-align: top; font-size: 9.5pt; font-weight: 300; color: #2C2C2C; line-height: 1.5; }
+    .checklist-text-cell strong { font-weight: 500; color: #3D5440; }
+
+    .back-footer { border-top: 1px solid rgba(92,122,94,0.2); padding-top: 24px; margin-top: 36px; }
+    .back-footer table { width: 100%; border-collapse: collapse; }
+    .back-footer-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20pt; font-weight: 400; color: #3D5440; }
+    .back-footer-logo span { color: #D4A5A0; }
+    .back-footer-tagline { font-size: 8.5pt; color: #7A7269; margin-top: 4px; letter-spacing: 0.06em; }
+    .back-footer-contact { text-align: right; font-size: 8.5pt; color: #7A7269; line-height: 1.8; }
+    .back-footer-contact a { color: #5C7A5E; text-decoration: none; }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer { margin-top: 32px; padding-top: 14px; border-top: 1px solid #F0E9DC; }
+    .page-footer table { width: 100%; border-collapse: collapse; }
+    .page-footer-logo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 10pt; color: #3D5440; }
+    .page-footer-logo span { color: #D4A5A0; }
+    .page-footer-info { font-size: 7pt; color: #7A7269; letter-spacing: 0.06em; text-align: right; }
+
+    .divider { height: 1px; background: rgba(92,122,94,0.2); margin: 28px 0; }
   </style>
 </head>
 <body>
 
   <!-- COVER -->
   <div class="cover">
-    <div>
+    <div class="cover-top">
       <div class="cover-logo">Flourish<span>Glow</span></div>
       <div class="cover-tagline">Done-for-you content for wellness practices</div>
     </div>
@@ -274,19 +328,23 @@ export default async function handler(req, res) {
       <div class="cover-business">${business_name}</div>
       <div class="cover-date">Prepared by FlourishGlow · ${pack_month}</div>
     </div>
-    <div class="cover-bottom">
-      <div class="cover-stat"><div class="cover-stat-number">12</div><div class="cover-stat-label">Social Captions</div></div>
-      <div class="cover-stat"><div class="cover-stat-number">3</div><div class="cover-stat-label">Reactivation Emails</div></div>
-      <div class="cover-stat"><div class="cover-stat-number">1</div><div class="cover-stat-label">Promo Email</div></div>
-      <div class="cover-stat"><div class="cover-stat-number">4</div><div class="cover-stat-label">Google Posts</div></div>
+    <div class="cover-stats">
+      <table><tr>
+        <td><span class="cover-stat-number">12</span><span class="cover-stat-label">Social Captions</span></td>
+        <td><span class="cover-stat-number">3</span><span class="cover-stat-label">Reactivation Emails</span></td>
+        <td><span class="cover-stat-number">1</span><span class="cover-stat-label">Promo Email</span></td>
+        <td><span class="cover-stat-number">4</span><span class="cover-stat-label">Google Posts</span></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- STRATEGY + HOW TO USE -->
   <div class="page">
     <div class="page-header">
-      <div class="page-header-logo">Flourish<span>Glow</span></div>
-      <div class="page-header-info">${business_name} · ${pack_month}</div>
+      <table><tr>
+        <td><div class="page-header-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-header-info">${business_name} · ${pack_month}</div></td>
+      </tr></table>
     </div>
     <div class="section-eyebrow">This month's approach</div>
     <div class="section-title">Your <em>strategy note.</em></div>
@@ -295,121 +353,132 @@ export default async function handler(req, res) {
       <div class="strategy-label">From the FlourishGlow team</div>
       <div class="strategy-text">${strategy_note}</div>
     </div>
-    <div class="divider-dark"></div>
+    <div class="divider"></div>
     <div class="section-eyebrow">How to use this pack</div>
     <div class="section-title">Getting <em>started.</em></div>
-    <div class="how-to-grid">
-      <div class="how-to-card">
-        <div class="how-to-icon">📸</div>
+    <table class="how-to-table"><tr>
+      <td class="how-to-card">
+        <span class="how-to-icon">📸</span>
         <div class="how-to-title">Social Captions</div>
-        <ul class="how-to-steps">
-          <li class="how-to-step"><span class="how-to-step-num">1</span><span>Choose your image or use the suggestion provided</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">2</span><span>Copy the caption text exactly as written</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">3</span><span>Copy the hashtags and add them to your post</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">4</span><span>Post to Instagram and/or Facebook</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">5</span><span>Aim for 3 posts per week — Tue, Thu, Sat</span></li>
-        </ul>
-      </div>
-      <div class="how-to-card">
-        <div class="how-to-icon">📧</div>
+        <div class="how-to-step"><span class="how-to-num">1</span>Choose your image or use the suggestion provided</div>
+        <div class="how-to-step"><span class="how-to-num">2</span>Copy the caption text exactly as written</div>
+        <div class="how-to-step"><span class="how-to-num">3</span>Copy the hashtags and add them to your post</div>
+        <div class="how-to-step"><span class="how-to-num">4</span>Post to Instagram and/or Facebook</div>
+        <div class="how-to-step"><span class="how-to-num">5</span>Aim for 3 posts per week — Tue, Thu, Sat</div>
+      </td>
+      <td class="how-to-card">
+        <span class="how-to-icon">📧</span>
         <div class="how-to-title">Email Campaigns</div>
-        <ul class="how-to-steps">
-          <li class="how-to-step"><span class="how-to-step-num">1</span><span>Copy subject line and body into your email platform</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">2</span><span>Replace [PATIENT NAME] with your merge tag</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">3</span><span>Replace [BOOKING LINK] with your booking URL</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">4</span><span>Send reactivation emails to patients inactive 60-90 days</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">5</span><span>Send promo email to your full patient list</span></li>
-        </ul>
-      </div>
-      <div class="how-to-card">
-        <div class="how-to-icon">🗺️</div>
+        <div class="how-to-step"><span class="how-to-num">1</span>Copy subject line and body into your email platform</div>
+        <div class="how-to-step"><span class="how-to-num">2</span>Replace [PATIENT NAME] with your merge tag</div>
+        <div class="how-to-step"><span class="how-to-num">3</span>Replace [BOOKING LINK] with your booking URL</div>
+        <div class="how-to-step"><span class="how-to-num">4</span>Send reactivation emails to patients inactive 60-90 days</div>
+        <div class="how-to-step"><span class="how-to-num">5</span>Send promo email to your full patient list</div>
+      </td>
+    </tr><tr>
+      <td class="how-to-card">
+        <span class="how-to-icon">🗺️</span>
         <div class="how-to-title">Google Business Posts</div>
-        <ul class="how-to-steps">
-          <li class="how-to-step"><span class="how-to-step-num">1</span><span>Go to your Google Business Profile dashboard</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">2</span><span>Click Add Update or Add Offer</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">3</span><span>Copy the post text and paste it in</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">4</span><span>Replace [PHONE] and [WEBSITE] placeholders</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">5</span><span>Post once per week throughout the month</span></li>
-        </ul>
-      </div>
-      <div class="how-to-card">
-        <div class="how-to-icon">💡</div>
+        <div class="how-to-step"><span class="how-to-num">1</span>Go to your Google Business Profile dashboard</div>
+        <div class="how-to-step"><span class="how-to-num">2</span>Click Add Update or Add Offer</div>
+        <div class="how-to-step"><span class="how-to-num">3</span>Copy the post text and paste it in</div>
+        <div class="how-to-step"><span class="how-to-num">4</span>Replace [PHONE] and [WEBSITE] placeholders</div>
+        <div class="how-to-step"><span class="how-to-num">5</span>Post once per week throughout the month</div>
+      </td>
+      <td class="how-to-card">
+        <span class="how-to-icon">💡</span>
         <div class="how-to-title">Tips for Best Results</div>
-        <ul class="how-to-steps">
-          <li class="how-to-step"><span class="how-to-step-num">✓</span><span>Post consistently — 3x/week beats 1x/week every time</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">✓</span><span>Feel free to tweak wording to sound more like you</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">✓</span><span>Respond to all comments within 24 hours</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">✓</span><span>Use your own before/after photos when possible</span></li>
-          <li class="how-to-step"><span class="how-to-step-num">✓</span><span>Fill out your monthly update form for tailored content</span></li>
-        </ul>
-      </div>
-    </div>
+        <div class="how-to-step"><span class="how-to-num">✓</span>Post consistently — 3x/week beats 1x/week every time</div>
+        <div class="how-to-step"><span class="how-to-num">✓</span>Feel free to tweak wording to sound more like you</div>
+        <div class="how-to-step"><span class="how-to-num">✓</span>Respond to all comments within 24 hours</div>
+        <div class="how-to-step"><span class="how-to-num">✓</span>Use your own before/after photos when possible</div>
+        <div class="how-to-step"><span class="how-to-num">✓</span>Fill out your monthly update form for tailored content</div>
+      </td>
+    </tr></table>
     <div class="page-footer">
-      <div class="page-footer-logo">Flourish<span>Glow</span></div>
-      <div class="page-footer-info">${business_name} · ${pack_month} · flourishglow.com</div>
+      <table><tr>
+        <td><div class="page-footer-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-footer-info">${business_name} · ${pack_month} · flourishglow.com</div></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- CAPTIONS 1-6 -->
   <div class="page">
     <div class="page-header">
-      <div class="page-header-logo">Flourish<span>Glow</span></div>
-      <div class="page-header-info">${business_name} · ${pack_month}</div>
+      <table><tr>
+        <td><div class="page-header-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-header-info">${business_name} · ${pack_month}</div></td>
+      </tr></table>
     </div>
     <div class="section-eyebrow">Section 01</div>
     <div class="section-title">Social Captions <em>+ Images.</em></div>
     <div class="section-sub">12 ready-to-post captions with image suggestions. Copy the caption, grab your image, add the hashtags, and post.</div>
-    <div class="caption-grid">${captions1to6}</div>
+    <table class="caption-table">${captions1to6}</table>
     <div class="page-footer">
-      <div class="page-footer-logo">Flourish<span>Glow</span></div>
-      <div class="page-footer-info">${business_name} · ${pack_month} · Page 2 of 6</div>
+      <table><tr>
+        <td><div class="page-footer-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-footer-info">${business_name} · ${pack_month} · Page 2 of 6</div></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- CAPTIONS 7-12 -->
   <div class="page">
     <div class="page-header">
-      <div class="page-header-logo">Flourish<span>Glow</span></div>
-      <div class="page-header-info">${business_name} · ${pack_month}</div>
+      <table><tr>
+        <td><div class="page-header-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-header-info">${business_name} · ${pack_month}</div></td>
+      </tr></table>
     </div>
     <div class="section-eyebrow">Section 01 continued</div>
     <div class="section-title">Social Captions <em>7–12.</em></div>
-    <div class="caption-grid">${captions7to12}</div>
+    <table class="caption-table">${captions7to12}</table>
     <div class="page-footer">
-      <div class="page-footer-logo">Flourish<span>Glow</span></div>
-      <div class="page-footer-info">${business_name} · ${pack_month} · Page 3 of 6</div>
+      <table><tr>
+        <td><div class="page-footer-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-footer-info">${business_name} · ${pack_month} · Page 3 of 6</div></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- REACTIVATION EMAILS -->
   <div class="page">
     <div class="page-header">
-      <div class="page-header-logo">Flourish<span>Glow</span></div>
-      <div class="page-header-info">${business_name} · ${pack_month}</div>
+      <table><tr>
+        <td><div class="page-header-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-header-info">${business_name} · ${pack_month}</div></td>
+      </tr></table>
     </div>
     <div class="section-eyebrow">Section 02</div>
     <div class="section-title">Reactivation <em>Email Sequence.</em></div>
     <div class="section-sub">3 emails to re-engage patients inactive 60–90 days. Replace [PATIENT NAME] with your merge tag and [BOOKING LINK] with your booking URL.</div>
     ${reactivationHtml}
     <div class="page-footer">
-      <div class="page-footer-logo">Flourish<span>Glow</span></div>
-      <div class="page-footer-info">${business_name} · ${pack_month} · Page 4 of 6</div>
+      <table><tr>
+        <td><div class="page-footer-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-footer-info">${business_name} · ${pack_month} · Page 4 of 6</div></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- PROMO EMAIL + GBP -->
   <div class="page">
     <div class="page-header">
-      <div class="page-header-logo">Flourish<span>Glow</span></div>
-      <div class="page-header-info">${business_name} · ${pack_month}</div>
+      <table><tr>
+        <td><div class="page-header-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-header-info">${business_name} · ${pack_month}</div></td>
+      </tr></table>
     </div>
     <div class="section-eyebrow">Section 03</div>
     <div class="section-title">Monthly <em>Promo Email.</em></div>
     <div class="section-sub">Send this to your full patient list to announce this month's offer or seasonal push.</div>
-    <div class="email-card" style="margin-bottom: 40px;">
+    <div class="email-card" style="margin-bottom:32px;">
       <div class="email-card-header">
-        <span class="email-num">Promotional Email — Full List</span>
-        <span class="email-send-day">Send anytime this month</span>
+        <table class="email-header-table"><tr>
+          <td><span class="email-num">Promotional Email — Full List</span></td>
+          <td style="text-align:right;"><span class="email-send-day">Send anytime this month</span></td>
+        </tr></table>
       </div>
       <div class="email-card-body">
         <div class="email-subject-label">Subject Line</div>
@@ -421,37 +490,39 @@ export default async function handler(req, res) {
     <div class="section-eyebrow">Section 04</div>
     <div class="section-title">Google Business <em>Profile Posts.</em></div>
     <div class="section-sub">Post one per week to keep your Google listing active. No hashtags needed for GBP posts.</div>
-    <div class="gbp-grid">${gbpHtml}</div>
+    <table class="gbp-table">${gbpHtml}</table>
     <div class="page-footer">
-      <div class="page-footer-logo">Flourish<span>Glow</span></div>
-      <div class="page-footer-info">${business_name} · ${pack_month} · Page 5 of 6</div>
+      <table><tr>
+        <td><div class="page-footer-logo">Flourish<span>Glow</span></div></td>
+        <td><div class="page-footer-info">${business_name} · ${pack_month} · Page 5 of 6</div></td>
+      </tr></table>
     </div>
   </div>
 
   <!-- BACK COVER -->
   <div class="back-cover">
-    <div>
-      <div class="back-cover-title">Your monthly<br /><em>checklist.</em></div>
-      <div class="back-cover-sub">Before you close this pack, make sure everything is scheduled and ready to go.</div>
-      <ul class="checklist">
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>Social captions scheduled</strong> — 12 captions loaded and ready to post 3x/week</div></li>
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>Reactivation sequence set up</strong> — 3-email sequence targeting patients inactive 60–90 days</div></li>
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>Promo email sent</strong> — monthly promotional email delivered to your full patient list</div></li>
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>Google Business posts scheduled</strong> — 4 posts ready, one per week throughout the month</div></li>
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>[BOOKING LINK] replaced</strong> — all booking link placeholders updated with your actual URL</div></li>
-        <li class="checklist-item"><div class="checklist-box"></div><div class="checklist-text"><strong>Monthly update form submitted</strong> — fill out your 3-question update at flourishglow.com/update</div></li>
-      </ul>
-    </div>
-    <div class="back-cover-footer">
-      <div>
-        <div class="back-cover-logo">Flourish<span>Glow</span></div>
-        <div style="font-size: 9pt; color: var(--warm-gray); margin-top: 4px; letter-spacing: 0.06em;">Done-for-you content for wellness practices</div>
-      </div>
-      <div class="back-cover-contact">
-        <div>flourishglow.com</div>
-        <div><a href="mailto:hello@flourishglow.com">hello@flourishglow.com</a></div>
-        <div style="margin-top: 4px; font-size: 8pt; color: rgba(122,114,105,0.6);">Questions? Just reply to this email.</div>
-      </div>
+    <div class="back-cover-title">Your monthly<br /><em>checklist.</em></div>
+    <div class="back-cover-sub">Before you close this pack, make sure everything is scheduled and ready to go.</div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>Social captions scheduled</strong> — 12 captions loaded and ready to post 3x/week</div></div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>Reactivation sequence set up</strong> — 3-email sequence targeting patients inactive 60–90 days</div></div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>Promo email sent</strong> — monthly promotional email delivered to your full patient list</div></div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>Google Business posts scheduled</strong> — 4 posts ready, one per week throughout the month</div></div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>[BOOKING LINK] replaced</strong> — all booking link placeholders updated with your actual URL</div></div>
+    <div class="checklist-item"><div class="checklist-box-cell"><span class="checklist-box"></span></div><div class="checklist-text-cell"><strong>Monthly update form submitted</strong> — fill out your 3-question update at flourishglow.com/update</div></div>
+    <div class="back-footer">
+      <table><tr>
+        <td>
+          <div class="back-footer-logo">Flourish<span>Glow</span></div>
+          <div class="back-footer-tagline">Done-for-you content for wellness practices</div>
+        </td>
+        <td>
+          <div class="back-footer-contact">
+            flourishglow.com<br/>
+            <a href="mailto:hello@flourishglow.com">hello@flourishglow.com</a><br/>
+            <span style="font-size:7.5pt;color:rgba(122,114,105,0.6);">Questions? Just reply to this email.</span>
+          </div>
+        </td>
+      </tr></table>
     </div>
   </div>
 
