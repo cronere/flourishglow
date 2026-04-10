@@ -274,16 +274,6 @@ export default async function handler(req, res) {
     </table>
   </div>
 
-  <!-- PAGE FOOTER 1 -->
-  <div style="padding:0 64px 32px;">
-    <div style="border-top:1px solid #F0E9DC; padding-top:14px;">
-      <table width="100%" cellpadding="0" cellspacing="0"><tr>
-        <td style="font-family:'Cormorant Garamond',Georgia,serif; font-size:10pt; color:#3D5440;">Flourish<span style="color:#D4A5A0;">Glow</span></td>
-        <td style="text-align:right; font-size:7pt; color:#7A7269; letter-spacing:0.06em;">${business_name} · ${pack_month} · flourishglow.com</td>
-      </tr></table>
-    </div>
-  </div>
-
   <!-- SOCIAL CAPTIONS -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 01</div>
@@ -311,8 +301,7 @@ export default async function handler(req, res) {
   </div>
 
   <!-- PROMO EMAIL -->
-  <div style="padding:0 64px 16px;">
-    <div style="height:1px; background:rgba(92,122,94,0.2); margin-bottom:28px;"></div>
+  <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 03</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Promo Email.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list to announce this month's offer or seasonal push.</div>
@@ -333,8 +322,7 @@ export default async function handler(req, res) {
   </div>
 
   <!-- GBP POSTS -->
-  <div style="padding:0 64px 16px;">
-    <div style="height:1px; background:rgba(92,122,94,0.2); margin-bottom:28px;"></div>
+  <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 04</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Google Business <em style="font-style:italic; color:#D4A5A0;">Profile Posts.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Post one per week to keep your Google listing active. No hashtags needed for GBP posts.</div>
