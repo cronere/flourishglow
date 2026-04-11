@@ -172,35 +172,6 @@ export default async function handler(req, res) {
       return rows
     }, []).join('')
 
-    // Build content calendar HTML
-    const calendarHtml = content_calendar.map(week => `
-      <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:12px; page-break-inside:avoid;">
-        <div style="background:#3D5440; padding:8px 16px;">
-          <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week ${week.week}</span>
-        </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-          <tr>
-            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
-              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Monday</div>
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.monday || ''}</div>
-            </td>
-            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
-              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Wednesday</div>
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.wednesday || ''}</div>
-            </td>
-            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
-              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Friday</div>
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.friday || ''}</div>
-            </td>
-            <td style="width:25%; padding:10px 14px; background:#F9F5EE; vertical-align:top;">
-              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#5C7A5E; margin-bottom:4px;">Email</div>
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.email || ''}</div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    `).join('')
-
     // Build complete HTML — flowing layout, no fixed page heights
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -340,32 +311,228 @@ export default async function handler(req, res) {
     </table>
   </div>
 
-  <!-- SOCIAL CAPTIONS -->
+  <!-- CONTENT CALENDAR -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 01</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly Content <em style="font-style:italic; color:#D4A5A0;">Calendar.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:20px; line-height:1.6;">Your complete posting and sending schedule for the month. Post social captions Monday, Wednesday, and Friday. Send emails as scheduled below.</div>
+
+    <!-- COLOR KEY -->
+    <div style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;">
+      <table cellpadding="0" cellspacing="0"><tr>
+        <td style="width:12px; height:12px; background:#5C7A5E; border-radius:2px; vertical-align:middle;"></td>
+        <td style="font-size:8pt; color:#5C7A5E; font-weight:500; padding-left:6px; vertical-align:middle;">Social Post</td>
+        <td style="width:16px;"></td>
+        <td style="width:12px; height:12px; background:#7A6EA0; border-radius:2px; vertical-align:middle;"></td>
+        <td style="font-size:8pt; color:#7A6EA0; font-weight:500; padding-left:6px; vertical-align:middle;">Reactivation Email</td>
+        <td style="width:16px;"></td>
+        <td style="width:12px; height:12px; background:#D4A5A0; border-radius:2px; vertical-align:middle;"></td>
+        <td style="font-size:8pt; color:#b87a74; font-weight:500; padding-left:6px; vertical-align:middle;">Promo Email</td>
+        <td style="width:16px;"></td>
+        <td style="width:12px; height:12px; background:#b8945a; border-radius:2px; vertical-align:middle;"></td>
+        <td style="font-size:8pt; color:#b8945a; font-weight:500; padding-left:6px; vertical-align:middle;">Referral Email</td>
+      </tr></table>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+      <div style="background:#3D5440; padding:8px 16px;">
+        <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 1</span>
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 1</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 1</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 2</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 3</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#D4A5A0; padding:3px 7px; border-radius:3px; line-height:1.4;">Promo Email</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+      <div style="background:#3D5440; padding:8px 16px;">
+        <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 2</span>
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 4</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 2</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 5</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 6</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+      <div style="background:#3D5440; padding:8px 16px;">
+        <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 3</span>
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 7</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 3</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 8</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 9</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#b8945a; padding:3px 7px; border-radius:3px; line-height:1.4;">Referral Email</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+      <div style="background:#3D5440; padding:8px 16px;">
+        <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 4</span>
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 10</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 11</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 12</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
+            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SOCIAL CAPTIONS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 02</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Social Captions <em style="font-style:italic; color:#D4A5A0;">+ Images.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">12 ready-to-post captions with image suggestions. Copy the caption, grab your image, add the hashtags, and post.</div>
     <table width="100%" cellpadding="0" cellspacing="0">${captionsHtml}</table>
   </div>
 
+  <!-- SMS CAPTIONS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 03</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">SMS <em style="font-style:italic; color:#D4A5A0;">Captions.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">12 short-form versions of your social captions for SMS marketing platforms like Podium or Birdeye. Each is under 160 characters — no hashtags needed.</div>
+    <table width="100%" cellpadding="0" cellspacing="0">${smsCaptionsHtml}</table>
+  </div>
+
+  <!-- GBP POSTS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 04</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Google Business <em style="font-style:italic; color:#D4A5A0;">Profile Posts.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Post one per week to keep your Google listing active. No hashtags needed for GBP posts.</div>
+    <table width="100%" cellpadding="0" cellspacing="0">${gbpHtml}</table>
+  </div>
+
   <!-- REACTIVATION EMAILS -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 02</div>
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 05</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Reactivation <em style="font-style:italic; color:#D4A5A0;">Email Sequence.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">3 emails to re-engage patients inactive 60–90 days. Replace [PATIENT NAME] with your merge tag and [BOOKING LINK] with your booking URL.</div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">3 emails to re-engage patients inactive 60–90 days. Send on the first 3 Tuesdays of the month. Replace [PATIENT NAME] with your merge tag and [BOOKING LINK] with your booking URL.</div>
     ${reactivationHtml}
   </div>
 
   <!-- PROMO EMAIL -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 03</div>
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 06</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Promo Email.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list to announce this month's offer or seasonal push.</div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list on the first Saturday of the month to announce this month's offer or seasonal push.</div>
     <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
       <div style="background:#F0E9DC; padding:10px 18px;">
         <table width="100%" cellpadding="0" cellspacing="0"><tr>
           <td style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">Promotional Email — Full List</td>
-          <td style="text-align:right;"><span style="font-size:7.5pt; font-weight:500; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 10px; border-radius:20px;">Send anytime this month</span></td>
+          <td style="text-align:right;"><span style="font-size:7.5pt; font-weight:500; color:#b87a74; background:rgba(212,165,160,0.2); padding:2px 10px; border-radius:20px;">Send Week 1 Saturday</span></td>
         </tr></table>
       </div>
       <div style="padding:18px;">
@@ -377,24 +544,16 @@ export default async function handler(req, res) {
     </div>
   </div>
 
-  <!-- GBP POSTS -->
-  <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 04</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Google Business <em style="font-style:italic; color:#D4A5A0;">Profile Posts.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Post one per week to keep your Google listing active. No hashtags needed for GBP posts.</div>
-    <table width="100%" cellpadding="0" cellspacing="0">${gbpHtml}</table>
-  </div>
-
   <!-- REFERRAL EMAIL -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 05</div>
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 07</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Referral Email.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list to encourage referrals. Replace [BOOKING LINK] with your booking URL.</div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list on the third Saturday of the month to encourage referrals. Replace [BOOKING LINK] with your booking URL.</div>
     <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
       <div style="background:#F0E9DC; padding:10px 18px;">
         <table width="100%" cellpadding="0" cellspacing="0"><tr>
           <td style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">Referral Email — Full List</td>
-          <td style="text-align:right;"><span style="font-size:7.5pt; font-weight:500; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 10px; border-radius:20px;">Send anytime this month</span></td>
+          <td style="text-align:right;"><span style="font-size:7.5pt; font-weight:500; color:#b8945a; background:rgba(184,148,90,0.15); padding:2px 10px; border-radius:20px;">Send Week 3 Saturday</span></td>
         </tr></table>
       </div>
       <div style="padding:18px;">
@@ -404,22 +563,6 @@ export default async function handler(req, res) {
         <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C;">${(referral_email.body || '').replace(/\n/g, '<br/>')}</div>
       </div>
     </div>
-  </div>
-
-  <!-- SMS CAPTIONS -->
-  <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 06</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">SMS <em style="font-style:italic; color:#D4A5A0;">Captions.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">12 short-form versions of your social captions for SMS marketing platforms like Podium or Birdeye. Each is under 160 characters — no hashtags needed.</div>
-    <table width="100%" cellpadding="0" cellspacing="0">${smsCaptionsHtml}</table>
-  </div>
-
-  <!-- CONTENT CALENDAR -->
-  <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 07</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly Content <em style="font-style:italic; color:#D4A5A0;">Calendar.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Your complete posting and sending schedule for the month. Post social captions Monday, Wednesday, and Friday. Send emails as scheduled below.</div>
-    ${calendarHtml}
   </div>
 
   <!-- CHECKLIST / BACK MATTER -->
