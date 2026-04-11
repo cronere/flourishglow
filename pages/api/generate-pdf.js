@@ -367,23 +367,25 @@ export default async function handler(req, res) {
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:20px; line-height:1.6;">Your complete posting and sending schedule for the month. Post social captions Monday, Wednesday, and Friday. Send emails as scheduled below.</div>
 
     <!-- COLOR KEY -->
-    <div style="display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap;">
-      <table cellpadding="0" cellspacing="0"><tr>
-        <td style="width:12px; height:12px; background:#5C7A5E; border-radius:2px; vertical-align:middle;"></td>
-        <td style="font-size:8pt; color:#5C7A5E; font-weight:500; padding-left:6px; vertical-align:middle;">Social Post</td>
-        <td style="width:16px;"></td>
-        <td style="width:12px; height:12px; background:rgba(92,122,94,0.2); border:1px solid #5C7A5E; border-radius:2px; vertical-align:middle;"></td>
-        <td style="font-size:8pt; color:#5C7A5E; font-weight:500; padding-left:6px; vertical-align:middle;">SMS Caption</td>
-        <td style="width:16px;"></td>
-        <td style="width:12px; height:12px; background:#7A6EA0; border-radius:2px; vertical-align:middle;"></td>
-        <td style="font-size:8pt; color:#7A6EA0; font-weight:500; padding-left:6px; vertical-align:middle;">Reactivation Email</td>
-        <td style="width:16px;"></td>
-        <td style="width:12px; height:12px; background:#D4A5A0; border-radius:2px; vertical-align:middle;"></td>
-        <td style="font-size:8pt; color:#b87a74; font-weight:500; padding-left:6px; vertical-align:middle;">Promo Email</td>
-        <td style="width:16px;"></td>
-        <td style="width:12px; height:12px; background:#b8945a; border-radius:2px; vertical-align:middle;"></td>
-        <td style="font-size:8pt; color:#b8945a; font-weight:500; padding-left:6px; vertical-align:middle;">Referral Email</td>
-      </tr></table>
+    <div style="margin-bottom:20px;">
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:12px; height:12px; background:#5C7A5E; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#5C7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">Social Post</td>
+          <td style="width:12px; height:12px; background:rgba(92,122,94,0.2); border:1px solid #5C7A5E; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#5C7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">SMS Caption</td>
+          <td style="width:12px; height:12px; background:#4A7A5E; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#4A7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">FAQ Post</td>
+          <td style="width:12px; height:12px; background:#4A7C8E; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#4A7C8E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">GBP + Photo</td>
+          <td style="width:12px; height:12px; background:#7A6EA0; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#7A6EA0; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">Reactivation</td>
+          <td style="width:12px; height:12px; background:#D4A5A0; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#b87a74; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">Promo Email</td>
+          <td style="width:12px; height:12px; background:#b8945a; border-radius:2px; vertical-align:middle;"></td>
+          <td style="font-size:7.5pt; color:#b8945a; font-weight:500; padding-left:5px; vertical-align:middle;">Referral Email</td>
+        </tr>
+      </table>
     </div>
 
     <!-- WEEK 1 -->
@@ -400,7 +402,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 1</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 1</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 1</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
@@ -409,12 +412,7 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
-          </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
-            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 3</div>
-            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 3</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 1</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
@@ -442,7 +440,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 2</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 2</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 2</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
@@ -451,7 +450,7 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 2</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
@@ -484,7 +483,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4;">Reactivation 3</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 3</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 3</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
@@ -493,7 +493,7 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 3</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
@@ -535,7 +535,7 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 4</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
@@ -663,109 +663,61 @@ export default async function handler(req, res) {
   </div>
 
   <!-- CHECKLIST / BACK MATTER -->
-  <div style="background:#F0E9DC; padding:64px 72px; page-break-before:always; min-height:100vh;">
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:32pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:12px;">
+  <div style="background:#F0E9DC; padding:48px 64px; page-break-before:always; min-height:100vh;">
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:32pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:8px;">
       Your monthly<br/><em style="font-style:italic; color:#D4A5A0;">checklist.</em>
     </div>
-    <div style="font-size:10.5pt; font-weight:300; color:#7A7269; line-height:1.7; max-width:480px; margin-bottom:36px;">
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; line-height:1.6; margin-bottom:24px;">
       Before you close this pack, make sure everything is scheduled and ready to go.
     </div>
 
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); margin-bottom:10px; display:block;">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Social captions scheduled</strong> — 12 captions loaded and ready to post 3x/week</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Reactivation sequence set up</strong> — 3-email sequence targeting patients inactive 60–90 days</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Promo email sent</strong> — monthly promotional email delivered to your full patient list</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Google Business posts scheduled</strong> — 4 posts ready, one per week throughout the month</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">[BOOKING LINK] replaced</strong> — all booking link placeholders updated with your actual URL</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">GBP photos uploaded</strong> — 4 photos taken and posted with captions to your Google Business Profile</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">FAQ posts scheduled</strong> — 3 question-and-answer posts added to your social calendar</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Seasonal offer copy live</strong> — headline and copy updated on your website banner, booking software, or front desk screen</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:40px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Monthly update form submitted</strong> — fill out your 3-question update at flourishglow.com/update</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Referral email sent</strong> — sent to your full patient list to drive word-of-mouth referrals</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">SMS captions loaded</strong> — 12 short-form captions ready in your SMS platform</td>
-        </tr></table>
-      </td></tr>
-    </table>
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:40px;">
-      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
-        <table width="100%" cellpadding="0" cellspacing="0"><tr>
-          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
-          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Content calendar reviewed</strong> — you know exactly what to post and send each week this month</td>
-        </tr></table>
-      </td></tr>
+    <table width="100%" cellpadding="0" cellspacing="8" style="margin-bottom:24px;">
+      <tr>
+        <td style="width:50%; vertical-align:top; padding:4px;">
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Social captions scheduled</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">12 captions loaded and posting 3x/week</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ SMS captions loaded</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">12 short-form captions ready in your SMS platform</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ FAQ posts scheduled</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">3 Q&A posts added to your social calendar</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ GBP posts + photos uploaded</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">4 posts and 4 photos live on Google Business Profile</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Seasonal offer copy live</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">Updated on website, booking software, or front desk</span>
+          </div>
+        </td>
+        <td style="width:50%; vertical-align:top; padding:4px;">
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Reactivation sequence set up</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">3 emails sent on first 3 Tuesdays to inactive patients</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Promo email sent</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">Full patient list — Week 1 Saturday</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Referral email sent</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">Full patient list — Week 3 Saturday</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px; margin-bottom:8px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ [BOOKING LINK] replaced</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">All placeholders updated with your actual booking URL</span>
+          </div>
+          <div style="background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15); padding:10px 14px;">
+            <span style="font-size:8.5pt; font-weight:500; color:#3D5440;">☐ Monthly update form submitted</span><br/>
+            <span style="font-size:7.5pt; font-weight:300; color:#7A7269;">flourishglow.com/update — keeps next pack tailored</span>
+          </div>
+        </td>
+      </tr>
     </table>
 
     <div style="border-top:1px solid rgba(92,122,94,0.2); padding-top:24px;">
@@ -781,6 +733,103 @@ export default async function handler(req, res) {
         </td>
       </tr></table>
     </div>
+  </div>
+
+  <!-- AUTOMATION TIPS + RESOURCES -->
+  <div style="padding:48px 64px 56px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Work smarter</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Do it all in <em style="font-style:italic; color:#D4A5A0;">two sessions.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:28px; line-height:1.7; max-width:560px;">The calendar looks like a lot — but it doesn't have to mean daily effort. Most of our clients batch everything into two focused sessions per month and let scheduling software handle the rest.</div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr>
+        <td style="width:50%; vertical-align:top; padding-right:12px;">
+          <div style="background:#3D5440; border-radius:4px; padding:18px 20px; margin-bottom:12px;">
+            <div style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#8AAD8C; margin-bottom:6px;">Session 1 — Month Start</div>
+            <div style="font-size:9pt; font-weight:300; color:rgba(255,255,255,0.85); line-height:1.7;">Load all 12 social captions + 3 FAQ posts into your scheduling app and set them to auto-post. Copy emails into your email platform. Schedule promo email for Week 1 Saturday. Done — your entire social presence is set for the month.</div>
+          </div>
+        </td>
+        <td style="width:50%; vertical-align:top; padding-left:12px;">
+          <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:18px 20px; margin-bottom:12px;">
+            <div style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#5C7A5E; margin-bottom:6px;">Session 2 — Mid Month</div>
+            <div style="font-size:9pt; font-weight:300; color:#2C2C2C; line-height:1.7;">Upload your 4 GBP photos with captions. Send your Week 3 referral email. Update your seasonal offer copy if anything has changed. Fill out your monthly update form so next month's pack stays tailored. That's it.</div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div style="height:1px; background:rgba(92,122,94,0.15); margin-bottom:28px;"></div>
+
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Platforms we've partnered with</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:22pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Tools that save you <em style="font-style:italic; color:#D4A5A0;">time.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:20px; line-height:1.6;">We've vetted these platforms and negotiated deals so you don't have to. Each one helps you get more done in less time.</div>
+
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width:50%; vertical-align:top; padding:6px 6px 6px 0;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
+            <div style="background:#F0E9DC; padding:10px 16px;">
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td style="font-size:9pt; font-weight:500; color:#3D5440;">ActiveCampaign</td>
+                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Email Marketing</td>
+              </tr></table>
+            </div>
+            <div style="padding:12px 16px; background:#F9F5EE;">
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">The most powerful email platform for practices ready to grow. Set up your reactivation sequence once and let it run automatically. Strong automation at a price point that makes sense for small practices.</div>
+              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">activecampaign.com/flourishglow</div>
+              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
+            </div>
+          </div>
+        </td>
+        <td style="width:50%; vertical-align:top; padding:6px 0 6px 6px;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
+            <div style="background:#F0E9DC; padding:10px 16px;">
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td style="font-size:9pt; font-weight:500; color:#3D5440;">MailerLite</td>
+                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Email Marketing</td>
+              </tr></table>
+            </div>
+            <div style="padding:12px 16px; background:#F9F5EE;">
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">Clean, affordable, and easy to learn — ideal for practices just getting started with email. Paste in your monthly promo and reactivation emails, hit send, and you're done. Free up to 1,000 contacts.</div>
+              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">mailerlite.com/flourishglow</div>
+              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Free up to 1,000 contacts</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:50%; vertical-align:top; padding:6px 6px 0 0;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
+            <div style="background:#F0E9DC; padding:10px 16px;">
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td style="font-size:9pt; font-weight:500; color:#3D5440;">Buffer</td>
+                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Social Scheduling</td>
+              </tr></table>
+            </div>
+            <div style="padding:12px 16px; background:#F9F5EE;">
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">The simplest way to schedule all 12 captions in one sitting. Clean interface, reliable posting, and a free tier that works well for single-location practices. Load the month once and walk away.</div>
+              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">buffer.com/flourishglow</div>
+              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
+            </div>
+          </div>
+        </td>
+        <td style="width:50%; vertical-align:top; padding:6px 0 0 6px;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
+            <div style="background:#F0E9DC; padding:10px 16px;">
+              <table width="100%" cellpadding="0" cellspacing="0"><tr>
+                <td style="font-size:9pt; font-weight:500; color:#3D5440;">Vista Social</td>
+                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Social Scheduling</td>
+              </tr></table>
+            </div>
+            <div style="padding:12px 16px; background:#F9F5EE;">
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">A step up from basic schedulers — Vista Social handles Instagram, Facebook, Google Business Profile, and SMS-style notifications in one dashboard. Perfect for practices wanting everything in one place at an affordable price.</div>
+              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">vistasocial.com/flourishglow</div>
+              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </body>
