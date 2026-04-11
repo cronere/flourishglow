@@ -373,15 +373,13 @@ export default async function handler(req, res) {
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:20px; line-height:1.6;">Your complete posting and sending schedule for the month. Post social captions Monday, Wednesday, and Friday. Send emails as scheduled below.</div>
 
     <!-- COLOR KEY -->
-    <div style="margin-bottom:20px;">
+    <div style="margin-bottom:16px;">
       <table cellpadding="0" cellspacing="0">
         <tr>
           <td style="width:12px; height:12px; background:#5C7A5E; border-radius:2px; vertical-align:middle;"></td>
           <td style="font-size:7.5pt; color:#5C7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">Social Post</td>
           <td style="width:12px; height:12px; background:rgba(92,122,94,0.2); border:1px solid #5C7A5E; border-radius:2px; vertical-align:middle;"></td>
           <td style="font-size:7.5pt; color:#5C7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">SMS Caption</td>
-          <td style="width:12px; height:12px; background:#4A7A5E; border-radius:2px; vertical-align:middle;"></td>
-          <td style="font-size:7.5pt; color:#4A7A5E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">FAQ Post</td>
           <td style="width:12px; height:12px; background:#4A7C8E; border-radius:2px; vertical-align:middle;"></td>
           <td style="font-size:7.5pt; color:#4A7C8E; font-weight:500; padding-left:5px; padding-right:14px; vertical-align:middle;">GBP + Photo</td>
           <td style="width:12px; height:12px; background:#7A6EA0; border-radius:2px; vertical-align:middle;"></td>
@@ -552,9 +550,40 @@ export default async function handler(req, res) {
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
             <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
-            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
+        </tr>
+      </table>
+    </div>
+
+    <!-- COMPACT TOOLS SECTION -->
+    <div style="border-top:1px solid #F0E9DC; padding-top:16px;">
+      <div style="font-size:8pt; font-weight:300; color:#7A7269; line-height:1.7; margin-bottom:12px;">
+        <strong style="font-weight:500; color:#3D5440;">This takes about 3 hours a month.</strong> Load your captions and emails into a scheduling tool at the start of the month and let it run. Platforms we trust will save you time:
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:33.33%; padding-right:8px; vertical-align:top;">
+            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
+              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">MailerLite</div>
+              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Email</div>
+              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Clean and affordable — ideal for practices just getting started with email. Free up to 1,000 contacts.</div>
+              <div style="font-size:7pt; color:#5C7A5E;">mailerlite.com/flourishglow</div>
+            </div>
+          </td>
+          <td style="width:33.33%; padding-right:4px; padding-left:4px; vertical-align:top;">
+            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
+              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">Buffer</div>
+              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Social</div>
+              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Schedule all 12 captions in one sitting. Simple, reliable, and free for single-location practices.</div>
+              <div style="font-size:7pt; color:#5C7A5E;">buffer.com/flourishglow</div>
+            </div>
+          </td>
+          <td style="width:33.33%; padding-left:8px; vertical-align:top;">
+            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
+              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">Vista Social</div>
+              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Social</div>
+              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Handles Instagram, Facebook, and GBP in one dashboard. Perfect for practices wanting everything in one place.</div>
+              <div style="font-size:7pt; color:#5C7A5E;">vistasocial.com/flourishglow</div>
+            </div>
           </td>
         </tr>
       </table>
@@ -741,102 +770,6 @@ export default async function handler(req, res) {
     </div>
   </div>
 
-  <!-- AUTOMATION TIPS + RESOURCES -->
-  <div style="padding:48px 64px 56px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Work smarter</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Do it all in <em style="font-style:italic; color:#D4A5A0;">two sessions.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:28px; line-height:1.7; max-width:560px;">The calendar looks like a lot — but it doesn't have to mean daily effort. Most of our clients batch everything into two focused sessions per month and let scheduling software handle the rest.</div>
-
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
-      <tr>
-        <td style="width:50%; vertical-align:top; padding-right:12px;">
-          <div style="background:#3D5440; border-radius:4px; padding:18px 20px; margin-bottom:12px;">
-            <div style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#8AAD8C; margin-bottom:6px;">Session 1 — Month Start</div>
-            <div style="font-size:9pt; font-weight:300; color:rgba(255,255,255,0.85); line-height:1.7;">Load all 12 social captions + 3 FAQ posts into your scheduling app and set them to auto-post. Copy emails into your email platform. Schedule promo email for Week 1 Saturday. Done — your entire social presence is set for the month.</div>
-          </div>
-        </td>
-        <td style="width:50%; vertical-align:top; padding-left:12px;">
-          <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:18px 20px; margin-bottom:12px;">
-            <div style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#5C7A5E; margin-bottom:6px;">Session 2 — Mid Month</div>
-            <div style="font-size:9pt; font-weight:300; color:#2C2C2C; line-height:1.7;">Upload your 4 GBP photos with captions. Send your Week 3 referral email. Update your seasonal offer copy if anything has changed. Fill out your monthly update form so next month's pack stays tailored. That's it.</div>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <div style="height:1px; background:rgba(92,122,94,0.15); margin-bottom:28px;"></div>
-
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Platforms we've partnered with</div>
-    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:22pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Tools that save you <em style="font-style:italic; color:#D4A5A0;">time.</em></div>
-    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:20px; line-height:1.6;">We've vetted these platforms and negotiated deals so you don't have to. Each one helps you get more done in less time.</div>
-
-    <table width="100%" cellpadding="0" cellspacing="0">
-      <tr>
-        <td style="width:50%; vertical-align:top; padding:6px 6px 6px 0;">
-          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
-            <div style="background:#F0E9DC; padding:10px 16px;">
-              <table width="100%" cellpadding="0" cellspacing="0"><tr>
-                <td style="font-size:9pt; font-weight:500; color:#3D5440;">ActiveCampaign</td>
-                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Email Marketing</td>
-              </tr></table>
-            </div>
-            <div style="padding:12px 16px; background:#F9F5EE;">
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">The most powerful email platform for practices ready to grow. Set up your reactivation sequence once and let it run automatically. Strong automation at a price point that makes sense for small practices.</div>
-              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">activecampaign.com/flourishglow</div>
-              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
-            </div>
-          </div>
-        </td>
-        <td style="width:50%; vertical-align:top; padding:6px 0 6px 6px;">
-          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
-            <div style="background:#F0E9DC; padding:10px 16px;">
-              <table width="100%" cellpadding="0" cellspacing="0"><tr>
-                <td style="font-size:9pt; font-weight:500; color:#3D5440;">MailerLite</td>
-                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Email Marketing</td>
-              </tr></table>
-            </div>
-            <div style="padding:12px 16px; background:#F9F5EE;">
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">Clean, affordable, and easy to learn — ideal for practices just getting started with email. Paste in your monthly promo and reactivation emails, hit send, and you're done. Free up to 1,000 contacts.</div>
-              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">mailerlite.com/flourishglow</div>
-              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Free up to 1,000 contacts</div>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td style="width:50%; vertical-align:top; padding:6px 6px 0 0;">
-          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
-            <div style="background:#F0E9DC; padding:10px 16px;">
-              <table width="100%" cellpadding="0" cellspacing="0"><tr>
-                <td style="font-size:9pt; font-weight:500; color:#3D5440;">Buffer</td>
-                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Social Scheduling</td>
-              </tr></table>
-            </div>
-            <div style="padding:12px 16px; background:#F9F5EE;">
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">The simplest way to schedule all 12 captions in one sitting. Clean interface, reliable posting, and a free tier that works well for single-location practices. Load the month once and walk away.</div>
-              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">buffer.com/flourishglow</div>
-              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
-            </div>
-          </div>
-        </td>
-        <td style="width:50%; vertical-align:top; padding:6px 0 0 6px;">
-          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; height:100%;">
-            <div style="background:#F0E9DC; padding:10px 16px;">
-              <table width="100%" cellpadding="0" cellspacing="0"><tr>
-                <td style="font-size:9pt; font-weight:500; color:#3D5440;">Vista Social</td>
-                <td style="text-align:right; font-size:7.5pt; font-weight:500; color:#5C7A5E;">Social Scheduling</td>
-              </tr></table>
-            </div>
-            <div style="padding:12px 16px; background:#F9F5EE;">
-              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.6; margin-bottom:10px;">A step up from basic schedulers — Vista Social handles Instagram, Facebook, Google Business Profile, and SMS-style notifications in one dashboard. Perfect for practices wanting everything in one place at an affordable price.</div>
-              <div style="font-size:7.5pt; font-weight:500; color:#5C7A5E; margin-bottom:4px;">vistasocial.com/flourishglow</div>
-              <div style="font-size:7pt; color:#b87a74; font-weight:500; text-transform:uppercase; letter-spacing:0.08em;">Get your first month free</div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
 
 </body>
 </html>`
