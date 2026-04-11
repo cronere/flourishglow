@@ -399,74 +399,71 @@ export default async function handler(req, res) {
       </div>
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 1</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 1</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 1</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 1</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 1</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 2</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 2</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 1</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 3</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 3</div>
+          </td>
+          <td style="width:16.66%; padding:10px 12px; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#D4A5A0; padding:3px 7px; border-radius:3px; line-height:1.4;">Promo Email</div>
-          </td>
-          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
-            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
         </tr>
       </table>
     </div>
 
     <!-- WEEK 2 -->
-    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:8px; page-break-inside:avoid;">
       <div style="background:#3D5440; padding:8px 16px;">
         <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 2</span>
       </div>
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 4</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 4</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 2</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 2</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 2</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 5</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 5</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 2</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 6</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 6</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
-          </td>
-          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
-            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
             <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
         </tr>
@@ -474,79 +471,75 @@ export default async function handler(req, res) {
     </div>
 
     <!-- WEEK 3 -->
-    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:8px; page-break-inside:avoid;">
       <div style="background:#3D5440; padding:8px 16px;">
         <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 3</span>
       </div>
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 7</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 7</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#7A6EA0; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">React. 3</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 3</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">FAQ Post 3</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 8</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 8</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 3</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 9</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 9</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#b8945a; padding:3px 7px; border-radius:3px; line-height:1.4;">Referral Email</div>
-          </td>
-          <td style="width:14.28%; padding:10px 12px; vertical-align:top; background:#F9F5EE;">
-            <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sun</div>
-            <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
         </tr>
       </table>
     </div>
 
     <!-- WEEK 4 -->
-    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:10px; page-break-inside:avoid;">
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:20px; page-break-inside:avoid;">
       <div style="background:#3D5440; padding:8px 16px;">
         <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week 4</span>
       </div>
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 10</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 10</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
             <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 11</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 11</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#4A7C8E; padding:3px 7px; border-radius:3px; line-height:1.4;">GBP + Photo 4</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
+          <td style="width:16.66%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
             <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 12</div>
             <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 12</div>
           </td>
-          <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
+          <td style="width:16.66%; padding:10px 12px; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
             <div style="font-size:8pt; color:#aaa; font-style:italic;">—</div>
           </td>
