@@ -42,7 +42,13 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Pack not found' })
     }
 
-    const strategy_note = pack.strategy_note
+    const rawStrategyNote = pack.strategy_note || ''
+    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    const seasonNames = ['Spring','Summer','Fall','Autumn','Winter','spring','summer','fall','autumn','winter']
+    let strategy_note = rawStrategyNote
+    monthNames.forEach(m => { strategy_note = strategy_note.replace(new RegExp(m, 'gi'), '') })
+    seasonNames.forEach(s => { strategy_note = strategy_note.replace(new RegExp(`\\b${s}\\b`, 'g'), '') })
+    strategy_note = strategy_note.replace(/\s{2,}/g, ' ').trim()
 
     // The full Claude JSON response is stored in social_captions
     // Parse it to extract all sections
