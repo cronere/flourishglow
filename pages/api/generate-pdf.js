@@ -67,6 +67,9 @@ export default async function handler(req, res) {
     const referral_email = fullPack.referral_email || {}
     const sms_captions = fullPack.sms_captions || []
     const content_calendar = fullPack.content_calendar || []
+    const gbp_photo_captions = fullPack.gbp_photo_captions || []
+    const faq_posts = fullPack.faq_posts || []
+    const seasonal_offer_copy = fullPack.seasonal_offer_copy || {}
 
     console.log('Pack fields:', {
       has_strategy_note: !!strategy_note,
@@ -172,6 +175,48 @@ export default async function handler(req, res) {
       return rows
     }, []).join('')
 
+    // Build FAQ posts HTML
+    const faqHtml = faq_posts.map((f, i) => `
+      <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
+        <div style="background:#F0E9DC; padding:10px 18px;">
+          <table width="100%" cellpadding="0" cellspacing="0"><tr>
+            <td style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">FAQ ${i + 1} of 3</td>
+            <td style="text-align:right;"><span style="font-size:7pt; font-weight:500; color:#5C7A5E; background:rgba(92,122,94,0.12); padding:1px 7px; border-radius:20px; text-transform:uppercase; letter-spacing:0.06em;">Q&amp;A Post</span></td>
+          </tr></table>
+        </div>
+        <div style="padding:18px;">
+          <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Question</div>
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:14pt; font-weight:500; color:#3D5440; margin-bottom:12px; line-height:1.3;">${f.question}</div>
+          <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Answer</div>
+          <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C; margin-bottom:10px;">${f.answer}</div>
+          <div style="font-size:8pt; color:#D4A5A0; line-height:1.5; margin-bottom:6px;">${f.hashtags}</div>
+          <div style="font-size:7pt; color:#7A7269; font-style:italic; padding-top:6px; border-top:1px solid #F0E9DC;">📸 ${f.image_suggestion}</div>
+        </div>
+      </div>
+    `).join('')
+
+    // Build GBP photo captions HTML
+    const gbpPhotoCaptionsHtml = gbp_photo_captions.reduce((rows, p, i) => {
+      if (i % 2 === 0) rows.push('<tr>')
+      rows[rows.length - 1] += `
+        <td style="width:50%; vertical-align:top; padding:6px;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; page-break-inside:avoid;">
+            <div style="background:#F0E9DC; padding:8px 14px;">
+              <span style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">Photo ${p.photo_number} of 4</span>
+            </div>
+            <div style="padding:12px 14px; background:#F9F5EE;">
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#5C7A5E; margin-bottom:4px;">Take This Photo</div>
+              <div style="font-size:8.5pt; font-weight:500; color:#3D5440; margin-bottom:10px; line-height:1.4;">${p.subject}</div>
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Caption to Post</div>
+              <div style="font-size:9pt; font-weight:300; line-height:1.65; color:#2C2C2C;">${p.caption}</div>
+            </div>
+          </div>
+        </td>`
+      if (i % 2 === 1) rows[rows.length - 1] += '</tr>'
+      if (i === gbp_photo_captions.length - 1 && i % 2 === 0) rows[rows.length - 1] += '<td></td></tr>'
+      return rows
+    }, []).join('')
+
     // Build complete HTML — flowing layout, no fixed page heights
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -242,12 +287,16 @@ export default async function handler(req, res) {
           <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">SMS Captions</div>
         </td>
         <td style="text-align:center; padding-top:20px;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">3</div>
+          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">FAQ Posts</div>
+        </td>
+        <td style="text-align:center; padding-top:20px;">
           <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">1</div>
           <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Referral Email</div>
         </td>
-        <td style="text-align:center; padding-top:20px;" colspan="2">
+        <td style="text-align:center; padding-top:20px;">
           <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">1</div>
-          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Content Calendar</div>
+          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Seasonal Offer</div>
         </td>
       </tr></table>
     </div>
@@ -530,9 +579,42 @@ export default async function handler(req, res) {
     <table width="100%" cellpadding="0" cellspacing="0">${gbpHtml}</table>
   </div>
 
-  <!-- REACTIVATION EMAILS -->
+  <!-- GBP PHOTO CAPTIONS -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
     <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 05</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">GBP Photo <em style="font-style:italic; color:#D4A5A0;">Captions.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">4 photo prompts with ready-to-post captions for your Google Business Profile. Take the suggested photo and paste the caption when uploading.</div>
+    <table width="100%" cellpadding="0" cellspacing="0">${gbpPhotoCaptionsHtml}</table>
+  </div>
+
+  <!-- FAQ POSTS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 06</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">FAQ <em style="font-style:italic; color:#D4A5A0;">Posts.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">3 question-and-answer posts based on common patient questions about your services. High-performing content that builds authority and trust.</div>
+    ${faqHtml}
+  </div>
+
+  <!-- SEASONAL OFFER COPY -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 07</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Seasonal Offer <em style="font-style:italic; color:#D4A5A0;">Copy.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Ready-to-use copy for your website banner, booking software, front desk screen, or social bio. Copy and paste — no editing needed.</div>
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; page-break-inside:avoid;">
+      <div style="background:#3D5440; padding:24px 28px; text-align:center;">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:24pt; font-weight:300; color:#fff; line-height:1.2; margin-bottom:8px;">${seasonal_offer_copy.headline || ''}</div>
+        <div style="font-size:11pt; font-weight:300; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0;">${seasonal_offer_copy.subheadline || ''}</div>
+      </div>
+      <div style="padding:24px 28px; background:#F9F5EE;">
+        <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C; margin-bottom:16px;">${seasonal_offer_copy.body || ''}</div>
+        <div style="display:inline-block; background:#3D5440; color:#fff; font-size:9pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:10px 24px; border-radius:3px;">${seasonal_offer_copy.cta || ''}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REACTIVATION EMAILS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 08</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Reactivation <em style="font-style:italic; color:#D4A5A0;">Email Sequence.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">3 emails to re-engage patients inactive 60–90 days. Send on the first 3 Tuesdays of the month. Replace [PATIENT NAME] with your merge tag and [BOOKING LINK] with your booking URL.</div>
     ${reactivationHtml}
@@ -540,7 +622,7 @@ export default async function handler(req, res) {
 
   <!-- PROMO EMAIL -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 06</div>
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 09</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Promo Email.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list on the first Saturday of the month to announce this month's offer or seasonal push.</div>
     <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
@@ -561,7 +643,7 @@ export default async function handler(req, res) {
 
   <!-- REFERRAL EMAIL -->
   <div style="padding:48px 64px 16px; page-break-before:always;">
-    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 07</div>
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 10</div>
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Referral Email.</em></div>
     <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list on the third Saturday of the month to encourage referrals. Replace [BOOKING LINK] with your booking URL.</div>
     <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
@@ -626,6 +708,30 @@ export default async function handler(req, res) {
         <table width="100%" cellpadding="0" cellspacing="0"><tr>
           <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
           <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">[BOOKING LINK] replaced</strong> — all booking link placeholders updated with your actual URL</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">GBP photos uploaded</strong> — 4 photos taken and posted with captions to your Google Business Profile</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">FAQ posts scheduled</strong> — 3 question-and-answer posts added to your social calendar</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Seasonal offer copy live</strong> — headline and copy updated on your website banner, booking software, or front desk screen</td>
         </tr></table>
       </td></tr>
     </table>
