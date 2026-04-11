@@ -323,6 +323,9 @@ export default async function handler(req, res) {
         <td style="width:12px; height:12px; background:#5C7A5E; border-radius:2px; vertical-align:middle;"></td>
         <td style="font-size:8pt; color:#5C7A5E; font-weight:500; padding-left:6px; vertical-align:middle;">Social Post</td>
         <td style="width:16px;"></td>
+        <td style="width:12px; height:12px; background:rgba(92,122,94,0.2); border:1px solid #5C7A5E; border-radius:2px; vertical-align:middle;"></td>
+        <td style="font-size:8pt; color:#5C7A5E; font-weight:500; padding-left:6px; vertical-align:middle;">SMS Caption</td>
+        <td style="width:16px;"></td>
         <td style="width:12px; height:12px; background:#7A6EA0; border-radius:2px; vertical-align:middle;"></td>
         <td style="font-size:8pt; color:#7A6EA0; font-weight:500; padding-left:6px; vertical-align:middle;">Reactivation Email</td>
         <td style="width:16px;"></td>
@@ -343,7 +346,8 @@ export default async function handler(req, res) {
         <tr>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 1</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 1</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 1</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
@@ -351,7 +355,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 2</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 2</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 2</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
@@ -359,7 +364,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 3</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 3</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 3</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
@@ -382,7 +388,8 @@ export default async function handler(req, res) {
         <tr>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 4</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 4</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 4</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
@@ -390,7 +397,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 5</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 5</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 5</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
@@ -398,7 +406,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 6</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 6</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 6</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
@@ -421,7 +430,8 @@ export default async function handler(req, res) {
         <tr>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 7</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 7</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 7</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
@@ -429,7 +439,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 8</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 8</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 8</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
@@ -437,7 +448,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 9</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 9</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 9</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
@@ -460,7 +472,8 @@ export default async function handler(req, res) {
         <tr>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Mon</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 10</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 10</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 10</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Tue</div>
@@ -468,7 +481,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Wed</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 11</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 11</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 11</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Thu</div>
@@ -476,7 +490,8 @@ export default async function handler(req, res) {
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top; background:#F9F5EE;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Fri</div>
-            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4;">Caption 12</div>
+            <div style="font-size:8pt; font-weight:400; color:#fff; background:#5C7A5E; padding:3px 7px; border-radius:3px; line-height:1.4; margin-bottom:3px;">Caption 12</div>
+            <div style="font-size:7pt; font-weight:400; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 7px; border-radius:3px; line-height:1.4;">SMS 12</div>
           </td>
           <td style="width:14.28%; padding:10px 12px; border-right:1px solid #F0E9DC; vertical-align:top;">
             <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:4px;">Sat</div>
