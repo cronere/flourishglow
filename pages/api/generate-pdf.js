@@ -849,7 +849,6 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           pdf_url: pdfUrl,
-          pdf_base64: pdfBase64,
           generation_status: 'generated'
         })
       }
@@ -860,7 +859,6 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       pdf_url: pdfUrl,
-      pdf_base64: pdfBase64,
       file_name: fileName
     })
 
