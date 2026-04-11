@@ -64,6 +64,9 @@ export default async function handler(req, res) {
     const reactivation_sequence = fullPack.reactivation_sequence || []
     const promo_email = fullPack.promo_email || {}
     const gbp_posts = fullPack.gbp_posts || []
+    const referral_email = fullPack.referral_email || {}
+    const sms_captions = fullPack.sms_captions || []
+    const content_calendar = fullPack.content_calendar || []
 
     console.log('Pack fields:', {
       has_strategy_note: !!strategy_note,
@@ -149,6 +152,55 @@ export default async function handler(req, res) {
       return rows
     }, []).join('')
 
+    // Build SMS captions HTML
+    const smsCaptionsHtml = sms_captions.reduce((rows, s, i) => {
+      if (i % 2 === 0) rows.push('<tr>')
+      rows[rows.length - 1] += `
+        <td style="width:50%; vertical-align:top; padding:6px;">
+          <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; page-break-inside:avoid;">
+            <div style="background:#F0E9DC; padding:7px 12px;">
+              <span style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">Caption ${s.caption_number} of 12</span>
+            </div>
+            <div style="padding:12px;">
+              <div style="font-size:9pt; font-weight:300; line-height:1.65; color:#2C2C2C;">${s.sms}</div>
+              <div style="font-size:7pt; color:#7A7269; margin-top:8px; padding-top:6px; border-top:1px solid #F0E9DC;">${s.sms ? s.sms.length : 0} / 160 characters</div>
+            </div>
+          </div>
+        </td>`
+      if (i % 2 === 1) rows[rows.length - 1] += '</tr>'
+      if (i === sms_captions.length - 1 && i % 2 === 0) rows[rows.length - 1] += '<td></td></tr>'
+      return rows
+    }, []).join('')
+
+    // Build content calendar HTML
+    const calendarHtml = content_calendar.map(week => `
+      <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:12px; page-break-inside:avoid;">
+        <div style="background:#3D5440; padding:8px 16px;">
+          <span style="font-size:8pt; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Week ${week.week}</span>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Monday</div>
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.monday || ''}</div>
+            </td>
+            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Wednesday</div>
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.wednesday || ''}</div>
+            </td>
+            <td style="width:25%; padding:10px 14px; border-right:1px solid #F0E9DC; vertical-align:top;">
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#D4A5A0; margin-bottom:4px;">Friday</div>
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.friday || ''}</div>
+            </td>
+            <td style="width:25%; padding:10px 14px; background:#F9F5EE; vertical-align:top;">
+              <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#5C7A5E; margin-bottom:4px;">Email</div>
+              <div style="font-size:8.5pt; font-weight:300; color:#2C2C2C; line-height:1.5;">${week.email || ''}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    `).join('')
+
     // Build complete HTML — flowing layout, no fixed page heights
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -211,6 +263,20 @@ export default async function handler(req, res) {
         <td style="text-align:center;">
           <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">4</div>
           <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Google Posts</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:center; padding-top:20px;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">12</div>
+          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">SMS Captions</div>
+        </td>
+        <td style="text-align:center; padding-top:20px;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">1</div>
+          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Referral Email</div>
+        </td>
+        <td style="text-align:center; padding-top:20px;" colspan="2">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#fff; line-height:1; display:block; margin-bottom:4px;">1</div>
+          <div style="font-size:7.5pt; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Content Calendar</div>
         </td>
       </tr></table>
     </div>
@@ -319,6 +385,43 @@ export default async function handler(req, res) {
     <table width="100%" cellpadding="0" cellspacing="0">${gbpHtml}</table>
   </div>
 
+  <!-- REFERRAL EMAIL -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 05</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly <em style="font-style:italic; color:#D4A5A0;">Referral Email.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Send this to your full patient list to encourage referrals. Replace [BOOKING LINK] with your booking URL.</div>
+    <div style="border:1px solid #F0E9DC; border-radius:4px; overflow:hidden; margin-bottom:16px; page-break-inside:avoid;">
+      <div style="background:#F0E9DC; padding:10px 18px;">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="font-size:7.5pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269;">Referral Email — Full List</td>
+          <td style="text-align:right;"><span style="font-size:7.5pt; font-weight:500; color:#5C7A5E; background:rgba(92,122,94,0.1); padding:2px 10px; border-radius:20px;">Send anytime this month</span></td>
+        </tr></table>
+      </div>
+      <div style="padding:18px;">
+        <div style="font-size:7pt; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A7269; margin-bottom:3px;">Subject Line</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:15pt; font-weight:500; color:#3D5440; margin-bottom:3px; line-height:1.2;">${referral_email.subject || ''}</div>
+        <div style="font-size:8.5pt; font-style:italic; color:#7A7269; margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #F0E9DC;">Preview text: ${referral_email.preview_text || ''}</div>
+        <div style="font-size:9.5pt; font-weight:300; line-height:1.8; color:#2C2C2C;">${(referral_email.body || '').replace(/\n/g, '<br/>')}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS CAPTIONS -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 06</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">SMS <em style="font-style:italic; color:#D4A5A0;">Captions.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">12 short-form versions of your social captions for SMS marketing platforms like Podium or Birdeye. Each is under 160 characters — no hashtags needed.</div>
+    <table width="100%" cellpadding="0" cellspacing="0">${smsCaptionsHtml}</table>
+  </div>
+
+  <!-- CONTENT CALENDAR -->
+  <div style="padding:48px 64px 16px; page-break-before:always;">
+    <div style="font-size:8pt; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:#5C7A5E; margin-bottom:8px;">Section 07</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:26pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:6px;">Monthly Content <em style="font-style:italic; color:#D4A5A0;">Calendar.</em></div>
+    <div style="font-size:9.5pt; font-weight:300; color:#7A7269; margin-bottom:24px; line-height:1.6;">Your complete posting and sending schedule for the month. Post social captions Monday, Wednesday, and Friday. Send emails as scheduled below.</div>
+    ${calendarHtml}
+  </div>
+
   <!-- CHECKLIST / BACK MATTER -->
   <div style="background:#F0E9DC; padding:64px 72px; page-break-before:always; min-height:100vh;">
     <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:32pt; font-weight:300; color:#3D5440; line-height:1.1; margin-bottom:12px;">
@@ -373,6 +476,30 @@ export default async function handler(req, res) {
         <table width="100%" cellpadding="0" cellspacing="0"><tr>
           <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
           <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Monthly update form submitted</strong> — fill out your 3-question update at flourishglow.com/update</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Referral email sent</strong> — sent to your full patient list to drive word-of-mouth referrals</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">SMS captions loaded</strong> — 12 short-form captions ready in your SMS platform</td>
+        </tr></table>
+      </td></tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:40px;">
+      <tr><td style="padding:14px 18px; background:white; border-radius:4px; border:1px solid rgba(92,122,94,0.15);">
+        <table width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td style="width:26px; vertical-align:top; padding-top:2px;"><span style="display:inline-block; width:16px; height:16px; border:1.5px solid rgba(92,122,94,0.3); border-radius:3px;"></span></td>
+          <td style="font-size:9.5pt; font-weight:300; color:#2C2C2C; line-height:1.5; vertical-align:top;"><strong style="font-weight:500; color:#3D5440;">Content calendar reviewed</strong> — you know exactly what to post and send each week this month</td>
         </tr></table>
       </td></tr>
     </table>
