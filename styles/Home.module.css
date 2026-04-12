@@ -445,6 +445,7 @@
   .pricing { padding: 64px 24px; }
   .pricingGrid { grid-template-columns: 1fr; }
   .pricingCard { grid-template-columns: 1fr; gap: 32px; padding: 40px 28px; }
+  .pricingFeatures { grid-template-columns: 1fr; }
 
   /* Sample */
   .sample { padding: 64px 24px; }
