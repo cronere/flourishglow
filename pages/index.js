@@ -127,7 +127,7 @@ export default function Home() {
           <p className="section-sub">Every plan includes these deliverables, created for your specific practice every single month.</p>
           <div className={styles.deliverablesGrid}>
             {[
-              { icon: '📸', title: 'Social Captions + Images', count: '12 per month', desc: 'Ready-to-post captions across 12 proven content angles — educational, promotional, before & after, FAQ, and more. Each with hashtags and image guidance.' },
+              { icon: '📸', title: 'Social Captions', count: '12 per month', desc: 'Ready-to-post captions across 12 proven content angles — educational, promotional, before & after, FAQ, and more. Each with hashtags and image guidance.' },
               { icon: '💬', title: 'SMS Captions', count: '12 per month', desc: 'Short-form versions of every social caption formatted for SMS platforms like Podium or Birdeye. Under 160 characters, no hashtags needed.' },
               { icon: '🗺️', title: 'Google Business Posts', count: '4 per month', desc: 'One post per week keeping your profile active and visible in local search. A mix of offers, educational content, and seasonal updates.' },
               { icon: '📷', title: 'GBP Photo Captions', count: '4 per month', desc: 'Specific photo prompts with ready-to-post captions for your Google Business Profile. Take the photo, paste the caption, upload.' },
@@ -156,9 +156,8 @@ export default function Home() {
           <h2 className="section-title">Straightforward.<br /><em>No surprises.</em></h2>
           <p className="section-sub">One setup fee. One monthly rate. Cancel anytime.</p>
           <div className={styles.pricingGrid}>
-
-            <div className={styles.pricingCard}>
-              <div className={styles.pricingTier}>Core</div>
+            <div className={`${styles.pricingCard} ${styles.featured}`}>
+              <div className={styles.pricingTier}>Core Plan</div>
               <div className={styles.pricingPrice}><sup>$</sup>397</div>
               <div className={styles.pricingPeriod}>per month</div>
               <div className={styles.pricingSetup}>+ $197 one-time setup fee</div>
@@ -180,29 +179,8 @@ export default function Home() {
                   <li className={styles.pricingFeature} key={f}>{f}</li>
                 ))}
               </ul>
-              <Link href="/onboarding?plan=core" className={styles.btnPricingOutline}>Get Started</Link>
+              <Link href="/onboarding?plan=core" className={styles.btnPricingSolid}>Get Started</Link>
             </div>
-
-            <div className={`${styles.pricingCard} ${styles.featured}`}>
-              <div className={styles.pricingBadge}>Most Popular</div>
-              <div className={styles.pricingTier}>Growth</div>
-              <div className={styles.pricingPrice}><sup>$</sup>597</div>
-              <div className={styles.pricingPeriod}>per month</div>
-              <div className={styles.pricingSetup}>+ $197 one-time setup fee</div>
-              <ul className={styles.pricingFeatures}>
-                {['Everything in Core'].map(f => (
-                  <li className={styles.pricingFeature} key={f}>{f}</li>
-                ))}
-                {['Automated review request sequence', 'New patient welcome sequence'].map(f => (
-                  <li className={`${styles.pricingFeature} ${styles.addon}`} key={f}>{f}</li>
-                ))}
-                {['Priority 24-hour turnaround', 'Quarterly promo calendar'].map(f => (
-                  <li className={styles.pricingFeature} key={f}>{f}</li>
-                ))}
-              </ul>
-              <Link href="/onboarding?plan=growth" className={styles.btnPricingSolid}>Get Started</Link>
-            </div>
-
           </div>
         </div>
       </section>
