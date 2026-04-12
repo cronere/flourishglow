@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end()
+  if (req.method !== 'POST') return res.status(405).end() 
 
   const { name, email, business_name, practice_type, services } = req.body
 
