@@ -157,11 +157,14 @@ export default function Home() {
           <p className="section-sub">One setup fee. One monthly rate. Cancel anytime.</p>
           <div className={styles.pricingGrid}>
             <div className={`${styles.pricingCard} ${styles.featured}`}>
-              <div className={styles.pricingTier}>Core Plan</div>
-              <div className={styles.pricingPrice}><sup>$</sup>397</div>
-              <div className={styles.pricingPeriod}>per month</div>
-              <div className={styles.pricingSetup}>+ $197 one-time setup fee</div>
-              <ul className={styles.pricingFeatures} style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0 24px'}}>
+              <div>
+                <div className={styles.pricingTier}>Core Plan</div>
+                <div className={styles.pricingPrice}><sup>$</sup>397</div>
+                <div className={styles.pricingPeriod}>per month</div>
+                <div className={styles.pricingSetup}>+ $197 one-time setup fee</div>
+                <Link href="/onboarding?plan=core" className={styles.btnPricingSolid}>Get Started</Link>
+              </div>
+              <ul className={styles.pricingFeatures}>
                 {[
                   '12 social captions + image guidance',
                   '12 SMS captions',
@@ -179,7 +182,6 @@ export default function Home() {
                   <li className={styles.pricingFeature} key={f}>{f}</li>
                 ))}
               </ul>
-              <Link href="/onboarding?plan=core" className={styles.btnPricingSolid}>Get Started</Link>
             </div>
           </div>
         </div>
