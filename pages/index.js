@@ -161,7 +161,7 @@ export default function Home() {
               <div className={styles.pricingPrice}><sup>$</sup>397</div>
               <div className={styles.pricingPeriod}>per month</div>
               <div className={styles.pricingSetup}>+ $197 one-time setup fee</div>
-              <ul className={styles.pricingFeatures}>
+              <ul className={styles.pricingFeatures} style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0 24px'}}>
                 {[
                   '12 social captions + image guidance',
                   '12 SMS captions',
