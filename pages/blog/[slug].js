@@ -72,7 +72,7 @@ export default function BlogPost({ post, related }) {
           <div className={styles.postCtaLabel}>Put this into practice</div>
           <h2 className={styles.postCtaTitle}>See what FlourishGlow would build for your practice.</h2>
           <p className={styles.postCtaDesc}>Request a free sample pack — real content built around your actual services, delivered to your inbox within 24 hours. No credit card required.</p>
-          <a href="/#sample" className="btn-primary">Request a Free Sample Pack →</a>
+          <a href="/#sample" style={{display:'inline-block', background:'var(--cream)', color:'var(--sage-dark)', fontFamily:"'DM Sans',sans-serif", fontSize:'13px', fontWeight:'500', letterSpacing:'0.1em', textTransform:'uppercase', padding:'16px 32px', borderRadius:'3px', textDecoration:'none'}}>Request a Free Sample Pack →</a>
         </div>
       </div>
 
