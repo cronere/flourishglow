@@ -27,8 +27,8 @@ export default function Onboarding() {
   const [step, setStep] = useState(1)
 
   useEffect(() => {
-    if (router.query.plan) setSelectedPlan(router.query.plan)
-  }, [router.query.plan])
+    setSelectedPlan('core')
+  }, [])
 
   function toggleVoice(v) {
     if (selectedVoices.includes(v)) {
@@ -48,7 +48,6 @@ export default function Onboarding() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (!selectedPlan) { alert('Please select a plan.'); return }
     if (selectedVoices.length === 0) { alert('Please select at least one brand voice.'); return }
     setLoading(true)
 
@@ -67,9 +66,7 @@ export default function Onboarding() {
     } catch (_) {}
 
     // Redirect to Stripe based on plan
-    const stripeUrl = payload.plan === 'growth'
-      ? 'https://pay.flourishglow.com/b/5kQ14n9Bc3MC38c8xFaVa01'
-      : 'https://pay.flourishglow.com/b/7sY4gzdRs96WdMQ29haVa00'
+    const stripeUrl = 'https://pay.flourishglow.com/b/7sY4gzdRs96WdMQ29haVa00'
 
     window.location.href = stripeUrl
     setLoading(false)
@@ -114,38 +111,42 @@ export default function Onboarding() {
               <div className={styles.sectionHeader}>
                 <div className={styles.sectionNum}>1</div>
                 <div>
-                  <div className={styles.sectionTitle}>Choose Your Plan</div>
-                  <div className={styles.sectionSub}>Both plans include a one-time $197 setup fee</div>
+                  <div className={styles.sectionTitle}>Your Plan</div>
+                  <div className={styles.sectionSub}>One plan. Everything your practice needs to stay visible every month.</div>
                 </div>
               </div>
               <div className={styles.planCards}>
                 {[
                   {
-                    id: 'core', name: 'Core', price: '397',
-                    features: ['12 social captions + branded images','3-email reactivation sequence','Monthly promo email','4 Google Business Profile posts','Monthly strategy note','Branded PDF delivery'],
+                    id: 'core', name: 'Core Plan', price: '397',
+                    features: [
+                      '12 social captions + image guidance',
+                      '12 SMS captions',
+                      '4 Google Business Profile posts',
+                      '4 GBP photo captions',
+                      '3 FAQ posts',
+                      '1 seasonal offer copy block',
+                      '3-email reactivation sequence',
+                      '1 monthly promo email',
+                      '1 referral email',
+                      'Monthly content calendar',
+                      'Branded PDF delivery',
+                      '48-hour turnaround',
+                    ],
                     addons: []
-                  },
-                  {
-                    id: 'growth', name: 'Growth', price: '597', badge: 'Most Popular',
-                    features: ['Everything in Core','Priority 24hr turnaround','Quarterly promo calendar'],
-                    addons: ['Review request sequence','New patient welcome sequence']
                   }
                 ].map(plan => (
                   <div
                     key={plan.id}
-                    className={`${styles.planCard} ${selectedPlan === plan.id ? styles.planSelected : ''}`}
+                    className={`${styles.planCard} ${styles.planSelected}`}
                     onClick={() => setSelectedPlan(plan.id)}
                   >
-                    {plan.badge && <div className={styles.planBadge}>{plan.badge}</div>}
-                    <div className={`${styles.planCheck} ${selectedPlan === plan.id ? styles.planCheckActive : ''}`}>
-                      {selectedPlan === plan.id && '✓'}
-                    </div>
+                    <div className={`${styles.planCheck} ${styles.planCheckActive}`}>✓</div>
                     <div className={styles.planName}>{plan.name}</div>
                     <div className={styles.planPrice}><sup>$</sup>{plan.price}</div>
-                    <div className={styles.planPeriod}>per month</div>
+                    <div className={styles.planPeriod}>per month + $197 one-time setup fee</div>
                     <ul className={styles.planFeatures}>
                       {plan.features.map(f => <li key={f} className={styles.planFeature}>{f}</li>)}
-                      {plan.addons.map(f => <li key={f} className={`${styles.planFeature} ${styles.planAddon}`}>{f}</li>)}
                     </ul>
                   </div>
                 ))}
