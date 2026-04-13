@@ -549,37 +549,9 @@ export default async function handler(req, res) {
 
     <!-- COMPACT TOOLS SECTION -->
     <div style="border-top:1px solid #F0E9DC; padding-top:16px;">
-      <div style="font-size:8pt; font-weight:300; color:#7A7269; line-height:1.7; margin-bottom:12px;">
-        <strong style="font-weight:500; color:#3D5440;">This takes about 3 hours a month.</strong> Load your captions and emails into a scheduling tool at the start of the month and let it run. Platforms we trust will save you time:
+      <div style="font-size:8pt; font-weight:300; color:#7A7269; line-height:1.8;">
+        <strong style="font-weight:500; color:#3D5440;">This takes about 3 hours a month.</strong> Load your captions into a scheduling platform like <span style="color:#3D5440; font-weight:500;">Buffer</span> or <span style="color:#3D5440; font-weight:500;">Vista Social</span>, and your emails into a platform like <span style="color:#3D5440; font-weight:500;">MailerLite</span> or <span style="color:#3D5440; font-weight:500;">ActiveCampaign</span> — then let automation handle the rest.
       </div>
-      <table width="100%" cellpadding="0" cellspacing="0">
-        <tr>
-          <td style="width:33.33%; padding-right:8px; vertical-align:top;">
-            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
-              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">MailerLite</div>
-              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Email</div>
-              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Clean and affordable — ideal for practices just getting started with email. Free up to 1,000 contacts.</div>
-              <div style="font-size:7pt; color:#5C7A5E;">mailerlite.com/flourishglow</div>
-            </div>
-          </td>
-          <td style="width:33.33%; padding-right:4px; padding-left:4px; vertical-align:top;">
-            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
-              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">Buffer</div>
-              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Social</div>
-              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Schedule all 12 captions in one sitting. Simple, reliable, and free for single-location practices.</div>
-              <div style="font-size:7pt; color:#5C7A5E;">buffer.com/flourishglow</div>
-            </div>
-          </td>
-          <td style="width:33.33%; padding-left:8px; vertical-align:top;">
-            <div style="background:#F9F5EE; border:1px solid #F0E9DC; border-radius:4px; padding:10px 12px;">
-              <div style="font-size:8pt; font-weight:500; color:#3D5440; margin-bottom:2px;">Vista Social</div>
-              <div style="font-size:7pt; color:#5C7A5E; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;">Social</div>
-              <div style="font-size:7.5pt; font-weight:300; color:#7A7269; line-height:1.5; margin-bottom:6px;">Handles Instagram, Facebook, and GBP in one dashboard. Perfect for practices wanting everything in one place.</div>
-              <div style="font-size:7pt; color:#5C7A5E;">vistasocial.com/flourishglow</div>
-            </div>
-          </td>
-        </tr>
-      </table>
     </div>
   </div>
 
