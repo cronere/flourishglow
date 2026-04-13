@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import styles from '../styles/Update.module.css' 
+import styles from '../styles/update.module.css' 
 
 export default function Update() {
   const router = useRouter()
