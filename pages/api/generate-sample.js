@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end() 
+  if (req.method !== 'POST') return res.status(405).end()
 
   const { name, email, business_name, practice_type, services } = req.body
 
@@ -239,7 +239,9 @@ export default async function handler(req, res) {
     }).join('')}
 
     <div style="border-top:1px solid #F0E9DC; padding-top:16px;">
-      <div style="font-size:8pt; font-weight:300; color:#7A7269; line-height:1.7; margin-bottom:12px;"><strong style="font-weight:500; color:#3D5440;">This takes about 3 hours a month.</strong> Load your captions and emails into a scheduling tool at the start of the month and let it run.</div>
+      <div style="font-size:8pt; font-weight:300; color:#7A7269; line-height:1.8;">
+        <strong style="font-weight:500; color:#3D5440;">This takes about 3 hours a month.</strong> Load your captions into a scheduling platform like <span style="color:#3D5440; font-weight:500;">Buffer</span> or <span style="color:#3D5440; font-weight:500;">Vista Social</span>, and your emails into a platform like <span style="color:#3D5440; font-weight:500;">MailerLite</span> or <span style="color:#3D5440; font-weight:500;">ActiveCampaign</span> — then let automation handle the rest.
+      </div>
     </div>
   </div>
 
