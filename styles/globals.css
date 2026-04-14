@@ -115,6 +115,12 @@ body::before {
   margin-bottom: 56px;
 }
 
+.section-sub.centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 /* ── SHARED FORM ELEMENTS ── */
 .form-group { margin-bottom: 20px; }
 .form-group:last-child { margin-bottom: 0; }
