@@ -134,9 +134,9 @@ export default function Home() {
       {/* SOCIAL PROOF STATS */}
       <section className={styles.statsSection}>
         <div className={styles.statsInner}>
-          <div className="section-label">Why it works</div>
-          <h2 className="section-title">The numbers behind<br /><em>consistent visibility.</em></h2>
-          <p className="section-sub">You don&apos;t need more motivation. You need a system that makes consistency inevitable.</p>
+          <div className="section-label" style={{color:'var(--sage-light)'}}>Why it works</div>
+          <h2 className="section-title" style={{color:'var(--cream)'}}>The numbers behind<br /><em style={{color:'var(--blush)'}}>consistent visibility.</em></h2>
+          <p className="section-sub" style={{color:'rgba(249,245,238,0.6)'}}>You don&apos;t need more motivation. You need a system that makes consistency inevitable.</p>
           <div className={styles.statsGrid}>
             {[
               { number: '8–12hrs', label: 'Saved per month', desc: "The average wellness practice owner spends 8–12 hours per month on content creation when doing it manually. FlourishGlow reduces that to about 3 hours of deployment." },
