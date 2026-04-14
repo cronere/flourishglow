@@ -139,13 +139,13 @@ export default function Home() {
           <p className="section-sub" style={{color:'rgba(249,245,238,0.6)'}}>You don&apos;t need more motivation. You need a system that makes consistency inevitable.</p>
           <div className={styles.statsGrid}>
             {[
-              { number: '8–12hrs', label: 'Saved per month', desc: "The average wellness practice owner spends 8–12 hours per month on content creation when doing it manually. FlourishGlow reduces that to about 3 hours of deployment." },
-              { number: '$1,500+', label: 'vs. hiring an agency', desc: "A social media manager or content agency typically charges $1,500–$3,000 per month for comparable output. FlourishGlow delivers the same content at a fraction of that cost." },
-              { number: '60–90', label: 'Days before patients drift', desc: "Research shows patients who don't hear from a practice within 60–90 days are significantly more likely to book elsewhere. The reactivation sequence targets this window directly." },
-              { number: '1', label: 'Appointment to break even', desc: "At an average appointment value of $200–$400, a single reactivation from one email pays for your entire month of content. Most practices see multiple bookings from the first send." },
+              { number: '8–12', unit: 'hrs', label: 'Saved per month', desc: "The average practice owner spends 8–12 hours per month on content creation when doing it manually. FlourishGlow reduces that to about 3 hours." },
+              { number: '$1,500', unit: '+', label: 'vs. hiring an agency', desc: "A social media manager or agency typically charges $1,500–$3,000 per month for comparable output. FlourishGlow delivers the same content at a fraction of that." },
+              { number: '60–90', unit: 'days', label: 'Before patients drift', desc: "Patients who don't hear from a practice within 60–90 days are significantly more likely to book elsewhere. The reactivation sequence targets this window." },
+              { number: '1', unit: 'appt', label: 'To break even', desc: "At an average appointment value of $200–$400, a single reactivation booking pays for your entire month of content." },
             ].map(s => (
-              <div key={s.label} className={styles.statCard}>
-                <div className={styles.statNumber}>{s.number}</div>
+              <div key={s.label} className={styles.statItem}>
+                <div className={styles.statNumber}>{s.number}<span className={styles.statUnit}>{s.unit}</span></div>
                 <div className={styles.statLabel}>{s.label}</div>
                 <div className={styles.statDesc}>{s.desc}</div>
               </div>
@@ -157,29 +157,52 @@ export default function Home() {
       {/* DELIVERABLES */}
       <section className={styles.deliverables} id="deliverables">
         <div className={styles.deliverablesInner}>
-          <div className="section-label">What&apos;s included</div>
-          <h2 className="section-title">Everything your practice<br />needs to <em>stay visible.</em></h2>
-          <p className="section-sub">Every plan includes these deliverables, created for your specific practice every single month.</p>
-          <div className={styles.deliverablesGrid}>
-            {[
-              { icon: '📸', title: 'Social Captions', count: '12 per month', desc: 'Ready-to-post captions across 12 proven content angles — educational, promotional, before & after, FAQ, and more. Each with hashtags and image guidance.' },
-              { icon: '💬', title: 'SMS Captions', count: '12 per month', desc: 'Short-form versions of every social caption formatted for SMS platforms like Podium or Birdeye. Under 160 characters, no hashtags needed.' },
-              { icon: '🗺️', title: 'Google Business Posts', count: '4 per month', desc: 'One post per week keeping your profile active and visible in local search. A mix of offers, educational content, and seasonal updates.' },
-              { icon: '📷', title: 'GBP Photo Captions', count: '4 per month', desc: 'Specific photo prompts with ready-to-post captions for your Google Business Profile. Take the photo, paste the caption, upload.' },
-              { icon: '❓', title: 'FAQ Posts', count: '3 per month', desc: 'Question-and-answer posts based on common patient questions about your services. High-engagement content that builds trust and authority.' },
-              { icon: '🎯', title: 'Seasonal Offer Copy', count: '1 per month', desc: 'Plug-and-play headline, subheadline, body, and CTA for your current offer. Use it on your website, booking software, or front desk screen.' },
-              { icon: '💌', title: 'Reactivation Email Sequence', count: '3 emails', desc: "Re-engage patients who haven't booked in 60–90 days. A warm check-in, a specific offer, and a gentle close. Drop it into any email platform and send." },
-              { icon: '📣', title: 'Monthly Promo Email', count: '1 per month', desc: 'A polished email built around your current offer or seasonal push. Subject line, preview text, and full body copy — ready to send to your full patient list.' },
-              { icon: '🤝', title: 'Referral Email', count: '1 per month', desc: 'A warm email asking current patients to refer a friend — with a compelling incentive tied to your current promotion. Sent to your full patient list.' },
-              { icon: '📅', title: 'Monthly Content Calendar', count: '1 per month', desc: 'A complete week-by-week posting and sending schedule so you know exactly what to post, when to send each email, and what to upload to GBP.' },
-            ].map(d => (
-              <div className={styles.deliverableCard} key={d.title}>
-                <div className={styles.deliverableIcon}>{d.icon}</div>
-                <div className={styles.deliverableTitle}>{d.title}</div>
-                <div className={styles.deliverableCount}>{d.count}</div>
-                <p className={styles.deliverableDesc}>{d.desc}</p>
-              </div>
-            ))}
+          <div className={styles.deliverablesHeader}>
+            <div className="section-label">What&apos;s included</div>
+            <h2 className="section-title">Everything your practice<br />needs to <em>stay visible.</em></h2>
+            <p className="section-sub">Every pack includes these deliverables, created for your specific practice every single month.</p>
+          </div>
+          <div className={styles.deliverablesColumns}>
+            <div className={styles.deliverablesCol}>
+              {[
+                { num: '01', title: 'Social Captions', count: '12 per month', desc: 'Ready-to-post captions across 12 proven content angles — educational, promotional, before & after, FAQ, and more. Each with hashtags and image guidance.' },
+                { num: '02', title: 'SMS Captions', count: '12 per month', desc: 'Short-form versions of every caption for SMS platforms like Podium or Birdeye. Under 160 characters, ready to send.' },
+                { num: '03', title: 'Google Business Posts', count: '4 per month', desc: 'One post per week keeping your profile active in local search. A mix of offers, educational content, and seasonal updates.' },
+                { num: '04', title: 'GBP Photo Captions', count: '4 per month', desc: 'Specific photo prompts with ready-to-post captions for your Google Business Profile. Take the photo, paste the caption, upload.' },
+                { num: '05', title: 'FAQ Posts', count: '3 per month', desc: 'Question-and-answer posts based on common patient questions about your services. High-engagement content that builds trust.' },
+              ].map(d => (
+                <div className={styles.deliverableRow} key={d.num}>
+                  <div className={styles.deliverableNum}>{d.num}</div>
+                  <div className={styles.deliverableBody}>
+                    <div className={styles.deliverableMeta}>
+                      <span className={styles.deliverableTitle}>{d.title}</span>
+                      <span className={styles.deliverableCount}>{d.count}</span>
+                    </div>
+                    <p className={styles.deliverableDesc}>{d.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className={styles.deliverablesCol}>
+              {[
+                { num: '06', title: 'Seasonal Offer Copy', count: '1 per month', desc: 'Plug-and-play headline, subheadline, body, and CTA for your current offer. Use it on your website, booking software, or front desk screen.' },
+                { num: '07', title: 'Reactivation Email Sequence', count: '3 emails', desc: "Re-engage patients who haven't booked in 60–90 days. A warm check-in, a specific offer, and a gentle close. Drop into any email platform and send." },
+                { num: '08', title: 'Monthly Promo Email', count: '1 per month', desc: 'A polished email built around your current offer or seasonal push. Subject line, preview text, and full body copy — ready to send to your full list.' },
+                { num: '09', title: 'Referral Email', count: '1 per month', desc: 'A warm ask for current patients to refer a friend — with a compelling incentive tied to your promotion. Sent to your full patient list.' },
+                { num: '10', title: 'Monthly Content Calendar', count: '1 per month', desc: 'A complete week-by-week posting and sending schedule — exactly what to post, when to send each email, and what to upload to GBP.' },
+              ].map(d => (
+                <div className={styles.deliverableRow} key={d.num}>
+                  <div className={styles.deliverableNum}>{d.num}</div>
+                  <div className={styles.deliverableBody}>
+                    <div className={styles.deliverableMeta}>
+                      <span className={styles.deliverableTitle}>{d.title}</span>
+                      <span className={styles.deliverableCount}>{d.count}</span>
+                    </div>
+                    <p className={styles.deliverableDesc}>{d.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -225,7 +248,7 @@ export default function Home() {
       </section>
 
       {/* FOUNDER */}
-      <section className={styles.founder}>
+      <section className={styles.founder} id="founder">
         <div className={styles.founderInner}>
           <div className={styles.founderImage}>
             <img src="/Jacob.png" alt="Jacob Merkley, Founder of FlourishGlow" className={styles.founderPhoto} />
@@ -233,33 +256,12 @@ export default function Home() {
           <div className={styles.founderContent}>
             <div className="section-label">Built by a practice owner</div>
             <h2 className={styles.founderTitle}>The system I wished<br /><em>existed years ago.</em></h2>
-            <p className={styles.founderBio}>I have a background in accounting, an MBA, and years of experience running a service business. As a practice owner myself, I watched great clinicians struggle with the same marketing problem over and over — not because they didn&apos;t care, but because generating consistent, quality content on top of running a practice is genuinely hard.</p>
+            <p className={styles.founderBio}>I have a background in accounting, an MBA, and years of experience running a service business. I watched great clinicians struggle with the same marketing problem over and over — not because they didn&apos;t care, but because generating consistent, quality content on top of running a practice is genuinely hard.</p>
             <p className={styles.founderBio}>FlourishGlow is the system I built to solve that problem. Not a generic content service. A done-for-you content engine that knows your practice, speaks in your voice, and shows up in your inbox every month without you having to think about it.</p>
             <div className={styles.founderSig}>
               <div className={styles.founderName}>Jacob Merkley</div>
               <div className={styles.founderRole}>Founder, FlourishGlow</div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className={styles.faq} id="faq">
-        <div className={styles.faqInner}>
-          <div className="section-label">Common questions</div>
-          <h2 className="section-title">Everything you need<br />to <em>know.</em></h2>
-          <div className={styles.faqList}>
-            {faqs.map((faq, i) => (
-              <div key={i} className={`${styles.faqItem} ${openFaq === i ? styles.faqOpen : ''}`}>
-                <button className={styles.faqQuestion} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                  <span>{faq.q}</span>
-                  <span className={styles.faqIcon}>{openFaq === i ? '−' : '+'}</span>
-                </button>
-                {openFaq === i && (
-                  <div className={styles.faqAnswer}>{faq.a}</div>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -332,6 +334,27 @@ export default function Home() {
                 <p className="form-hint" style={{textAlign:'center',marginTop:'12px'}}>We&apos;ll send your sample within a few hours. No spam, ever.</p>
               </form>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className={styles.faq} id="faq">
+        <div className={styles.faqInner}>
+          <div className="section-label" style={{color:'var(--sage-light)'}}>Common questions</div>
+          <h2 className="section-title" style={{color:'var(--cream)'}}>Everything you need<br />to <em style={{color:'var(--blush)'}}>know.</em></h2>
+          <div className={styles.faqList}>
+            {faqs.map((faq, i) => (
+              <div key={i} className={`${styles.faqItem} ${openFaq === i ? styles.faqOpen : ''}`}>
+                <button className={styles.faqQuestion} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                  <span>{faq.q}</span>
+                  <span className={styles.faqIcon}>{openFaq === i ? '−' : '+'}</span>
+                </button>
+                {openFaq === i && (
+                  <div className={styles.faqAnswer}>{faq.a}</div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
