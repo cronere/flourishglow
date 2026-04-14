@@ -28,6 +28,7 @@ export default function Nav({ variant = 'main' }) {
           <li><Link href="/#deliverables">What You Get</Link></li>
           <li><Link href="/#pricing">Pricing</Link></li>
           <li><Link href="/#sample">Sample</Link></li>
+          <li><Link href="/#faq">FAQ</Link></li>
           <li><Link href="/blog">Blog</Link></li>
         </ul>
         <div className="nav-right">
@@ -47,6 +48,7 @@ export default function Nav({ variant = 'main' }) {
         <Link href="/#deliverables" onClick={() => setMenuOpen(false)}>What You Get</Link>
         <Link href="/#pricing" onClick={() => setMenuOpen(false)}>Pricing</Link>
         <Link href="/#sample" onClick={() => setMenuOpen(false)}>Sample</Link>
+        <Link href="/#faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
         <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
         <Link href="/onboarding" className="mobile-cta-btn" onClick={() => setMenuOpen(false)}>
           Get Started
