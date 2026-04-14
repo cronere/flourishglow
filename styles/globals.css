@@ -94,6 +94,15 @@ body::before {
   width: 24px;
   height: 1px;
   background: var(--sage-light);
+  flex-shrink: 0;
+}
+.section-label::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--sage-light);
+  flex-shrink: 0;
 }
 
 .section-title {
